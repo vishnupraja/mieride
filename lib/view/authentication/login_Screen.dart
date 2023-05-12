@@ -42,33 +42,44 @@ class _LoginScreenState extends State<LoginScreen> {
               labletext: "Mobile Number",
               textEditingController: contactCtr,
               textInputType: TextInputType.number,
-              icons: Icon(Icons.email_outlined,color: MyColors.secondry,),
+              icons: Icon(
+                Icons.email_outlined,
+                color: MyColors.secondry,
+              ),
             ),
             custom_textfield(
               ishide: visible,
               labletext: 'Password',
               textEditingController: passwordCtr,
               textInputType: TextInputType.text,
-              icons: Icon(Icons.lock,color: MyColors.secondry,),
+              icons: Icon(
+                Icons.lock,
+                color: MyColors.secondry,
+              ),
               icon: InkWell(
-                onTap: (){
-                  setState(() {
-                    visible = !visible;
-                  });
-                },
-                  child: visible?
-                  Icon(Icons.visibility_off,color: MyColors.secondry,):
-                  Icon(Icons.visibility,color: MyColors.secondry,)
-                 ),
-
+                  onTap: () {
+                    setState(() {
+                      visible = !visible;
+                    });
+                  },
+                  child: visible
+                      ? Icon(
+                          Icons.visibility_off,
+                          color: MyColors.secondry,
+                        )
+                      : Icon(
+                          Icons.visibility,
+                          color: MyColors.secondry,
+                        )),
             ),
             SizedBox(
               height: 50,
             ),
-            custom_button(voidCallback: () {
-              Get.toNamed(RouteHelper.getHomePageScreenRoute());
-            }, text: "Login"),
-
+            custom_button(
+                voidCallback: () {
+                  Get.toNamed(RouteHelper.getHomePageScreenRoute());
+                },
+                text: "Login"),
           ],
         ),
       ),

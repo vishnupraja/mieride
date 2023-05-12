@@ -215,7 +215,7 @@ class _CompleteOrderState extends State<CompleteOrder> {
                     ),
                   ],
                 ),
-                SizedBox(height: 10,),
+               /* SizedBox(height: 10,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -270,7 +270,7 @@ class _CompleteOrderState extends State<CompleteOrder> {
                       ),
                     ),
                   ],
-                )
+                )*/
                 /*SizedBox(
                         width: 30,
                       ),

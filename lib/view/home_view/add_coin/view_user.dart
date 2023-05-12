@@ -11,7 +11,6 @@ class ViewUser extends StatefulWidget {
 }
 
 class _ViewUserState extends State<ViewUser> {
-
   TextEditingController coinController = TextEditingController();
 
   @override
@@ -28,8 +27,8 @@ class _ViewUserState extends State<ViewUser> {
         scrollDirection: Axis.vertical,
         itemBuilder: (context, index) {
           return Card(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             elevation: 4,
             child: Padding(
               padding: const EdgeInsets.all(10.0),
@@ -83,7 +82,9 @@ class _ViewUserState extends State<ViewUser> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20,),
+                  SizedBox(
+                    height: 20,
+                  ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -111,18 +112,14 @@ class _ViewUserState extends State<ViewUser> {
                       SizedBox(
                         height: 30,
                         child: Padding(
-                          padding:
-                          const EdgeInsets.symmetric(horizontal: 10),
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                              MyColors.orange,
-
+                              backgroundColor: MyColors.orange,
                               foregroundColor: MyColors.white,
                               minimumSize: Size(80, 30),
                               shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                  BorderRadius.circular(10)),
+                                  borderRadius: BorderRadius.circular(10)),
                             ),
                             onPressed: () {
                               _showTextInputDialog(context);
@@ -136,15 +133,15 @@ class _ViewUserState extends State<ViewUser> {
                       ),
                     ],
                   ),
-
-
                 ],
               ),
             ),
           );
-        },),
+        },
+      ),
     );
   }
+
   Future<String?> _showTextInputDialog(BuildContext context) async {
     return showDialog(
         context: context,
@@ -159,8 +156,13 @@ class _ViewUserState extends State<ViewUser> {
                     const Text('USD.350'),
                   ],
                 ),
-                SizedBox(height: 10,),
-                Text("Credit",style: TextStyle(fontSize: 12),)
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "Credit",
+                  style: TextStyle(fontSize: 12),
+                )
               ],
             ),
             content: Container(
@@ -169,17 +171,19 @@ class _ViewUserState extends State<ViewUser> {
                 keyboardType: TextInputType.number,
                 controller: coinController,
                 decoration: const InputDecoration(
-                  border: OutlineInputBorder(borderSide: BorderSide(color: MyColors.secondry))
-                ),
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(color: MyColors.secondry))),
               ),
             ),
             actions: <Widget>[
-             Padding(
-               padding: const EdgeInsets.only(right: 15),
-               child: custom_button(voidCallback: (){
-                 Get.back();
-               }, text: "Add Credit"),
-             )
+              Padding(
+                padding: const EdgeInsets.only(right: 15),
+                child: custom_button(
+                    voidCallback: () {
+                      Get.back();
+                    },
+                    text: "Add Credit"),
+              )
             ],
           );
         });

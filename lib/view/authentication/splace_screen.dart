@@ -12,21 +12,22 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  
-  
   @override
   void initState() {
-    Timer(Duration(seconds: 3), (){
+    Timer(Duration(seconds: 3), () {
       Get.offNamed(RouteHelper.getLoginScreenRoute());
     });
     super.initState();
   }
-  
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Image.asset('assets/images/SplashImage.png',height: context.height,width: context.width,fit: BoxFit.fill,)
-    );
+        body: Image.asset(
+      'assets/images/SplashImage.png',
+      height: context.height,
+      width: context.width,
+      fit: BoxFit.fill,
+    ));
   }
 }

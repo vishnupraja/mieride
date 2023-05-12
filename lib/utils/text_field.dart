@@ -10,15 +10,14 @@ class custom_textfield extends StatelessWidget {
   TextInputType? textInputType;
   TextEditingController? textEditingController;
 
-  custom_textfield({
-    super.key,
-    required this.labletext,
-    this.icon,
-    this.icons,
-    this.textInputType,
-    this.textEditingController,
-    this.ishide = false
-  });
+  custom_textfield(
+      {super.key,
+      required this.labletext,
+      this.icon,
+      this.icons,
+      this.textInputType,
+      this.textEditingController,
+      this.ishide = false});
 
   @override
   Widget build(BuildContext context) {
@@ -76,12 +75,13 @@ class custom_button extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 50,
-      width: context.width/1.5,
+      width: context.width / 1.5,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: MyColors.secondry,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10),topRight: Radius.circular(10)),
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
           ),
         ),
         onPressed: voidCallback,
