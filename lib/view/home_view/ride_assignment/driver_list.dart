@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../utils/colors.dart';
 import '../../../utils/text_field.dart';
@@ -228,7 +229,7 @@ class _DriverState extends State<Driver> {
       ),
         bottomNavigationBar: Padding(padding: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
           child: custom_button(voidCallback: () {
-            print(selectedIndex);
+            print(Get.arguments["id"]);
           }, text: 'Allot Driver',),
         ),
     );
