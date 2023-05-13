@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mie_ride/rout_helper/rout_helper.dart';
+import 'package:mie_ride/controller/login_controller.dart';
+import 'package:mie_ride/utils/SnackBar.dart';
 import 'package:mie_ride/utils/colors.dart';
 import 'package:mie_ride/utils/text_field.dart';
 
@@ -14,6 +15,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController contactCtr = TextEditingController();
   TextEditingController passwordCtr = TextEditingController();
+  LoginController controller = Get.put(LoginController());
 
   bool visible = true;
 
@@ -75,14 +77,29 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(
               height: 50,
             ),
-            custom_button(
-                voidCallback: () {
-                  Get.toNamed(RouteHelper.getHomePageScreenRoute());
-                },
-                text: "Login"),
+           Obx(() => custom_button(
+               loading: controller.isLoading.value,
+               voidCallback: () {
+                 if(valid() == true){
+                   controller.Login(context, contactCtr.text, passwordCtr.text);
+                 }
+               },
+               text: "Login"), ),
           ],
         ),
       ),
     );
   }
+
+  bool valid(){
+    if(contactCtr.text.isEmpty){
+      showCustomSnackBar("please fill Mobile Number", context);
+    }else if(passwordCtr.text.isEmpty){
+      showCustomSnackBar("please fill password", context);
+    }else{
+      return true;
+    }
+    return false;
+  }
+
 }

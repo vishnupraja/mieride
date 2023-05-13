@@ -2,10 +2,9 @@
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SharedPreferenceCat{
-  String REGISTRATION_KEY = "REGISTRATION_KEY";
+class SharedPreferenceMie{
   String USER_ID = "USER_ID";
-  String ON_BOARDING_SCREEN = "ON_BOARDING_SCREEN";
+  String LOGIN_KEY = "LOGIN_KEY";
 
 
   void setBoolValue(String key, bool value) async {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mie_ride/controller/coin_controller.dart';
 import 'package:mie_ride/utils/colors.dart';
 import 'package:mie_ride/utils/text_field.dart';
 
@@ -12,6 +13,13 @@ class ViewUser extends StatefulWidget {
 
 class _ViewUserState extends State<ViewUser> {
   TextEditingController coinController = TextEditingController();
+  CoinController controller = Get.put(CoinController());
+
+  @override
+  void initState() {
+    controller.userFetch();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,138 +30,147 @@ class _ViewUserState extends State<ViewUser> {
         centerTitle: true,
         backgroundColor: MyColors.secondry,
       ),
-      body: ListView.builder(
-        itemCount: 5,
-        scrollDirection: Axis.vertical,
-        itemBuilder: (context, index) {
-          return Card(
-            shape:
+      body: Obx((){
+        if(controller.isLoading.value){
+          return Center(child: myIndicator(),);
+        }else if(controller.userList.length == 0){
+          return Center(child: Text('Empty User'),);
+        }else{
+          return ListView.builder(
+            itemCount: controller.userList.length,
+            scrollDirection: Axis.vertical,
+            itemBuilder: (context, index) {
+              var list = controller.userList[index];
+              return Card(
+                shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            elevation: 4,
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Name",
-                            style: TextStyle(
-                                fontSize: 10,
-                                color: MyColors.grey,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Text("Human",
-                              style: TextStyle(
-                                  fontSize: 10,
-                                  color: MyColors.secondry,
-                                  fontWeight: FontWeight.bold)),
-                        ],
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            "Email",
-                            style: TextStyle(
-                                fontSize: 10,
-                                color: MyColors.grey,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            "human@gmail.com",
-                            style: TextStyle(
-                                fontSize: 10,
-                                color: MyColors.secondry,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
+                elevation: 4,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "Wallet Balance",
-                            style: TextStyle(
-                                fontSize: 10,
-                                color: MyColors.grey,
-                                fontWeight: FontWeight.bold),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Name",
+                                style: TextStyle(
+                                    fontSize: 10,
+                                    color: MyColors.grey,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Text(list.userName,
+                                  style: TextStyle(
+                                      fontSize: 10,
+                                      color: MyColors.secondry,
+                                      fontWeight: FontWeight.bold)),
+                            ],
                           ),
-                          const SizedBox(
-                            height: 5,
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                "Email",
+                                style: TextStyle(
+                                    fontSize: 10,
+                                    color: MyColors.grey,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                list.email,
+                                style: TextStyle(
+                                    fontSize: 10,
+                                    color: MyColors.secondry,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
                           ),
-                          Text("\$300",
-                              style: TextStyle(
-                                  fontSize: 10,
-                                  color: MyColors.secondry,
-                                  fontWeight: FontWeight.bold)),
                         ],
                       ),
                       SizedBox(
-                        height: 30,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: MyColors.orange,
-                              foregroundColor: MyColors.white,
-                              minimumSize: Size(80, 30),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                            ),
-                            onPressed: () {
-                              _showTextInputDialog(context);
-                            },
-                            child: Text(
-                              "Add Coin",
-                              style: TextStyle(fontSize: 8),
+                        height: 20,
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Wallet Balance",
+                                style: TextStyle(
+                                    fontSize: 10,
+                                    color: MyColors.grey,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Text("\$${list.walletBalance}",
+                                  style: TextStyle(
+                                      fontSize: 10,
+                                      color: MyColors.secondry,
+                                      fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 30,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 10),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: MyColors.orange,
+                                  foregroundColor: MyColors.white,
+                                  minimumSize: Size(80, 30),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                ),
+                                onPressed: () {
+                                  _showTextInputDialog(context,list.userId,list.walletBalance);
+                                },
+                                child: Text(
+                                  "Add Coin",
+                                  style: TextStyle(fontSize: 8),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
+                        ],
                       ),
                     ],
                   ),
-                ],
-              ),
-            ),
+                ),
+              );
+            },
           );
-        },
-      ),
+        }
+      })
     );
   }
 
-  Future<String?> _showTextInputDialog(BuildContext context) async {
+  Future<String?> _showTextInputDialog(BuildContext context,String id,String price) async {
     return showDialog(
         context: context,
         builder: (context) {
-          return AlertDialog(
+          return  AlertDialog(
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
                     const Text('Total Credit:- '),
-                    const Text('USD.350'),
+                    Text('USD.$price}'),
                   ],
                 ),
                 SizedBox(
@@ -178,11 +195,13 @@ class _ViewUserState extends State<ViewUser> {
             actions: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(right: 15),
-                child: custom_button(
+                child: Obx(() => custom_button(
+                  loading: controller.coinLoading.value,
                     voidCallback: () {
-                      Get.back();
+                      controller.addCoin(context, id, coinController.text);
+                      coinController.text = "";
                     },
-                    text: "Add Credit"),
+                    text: "Add Credit"),)
               )
             ],
           );
