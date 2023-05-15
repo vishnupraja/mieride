@@ -33,6 +33,7 @@ class _CancelOrderState extends State<CancelOrder> {
         return ListView.builder(
           itemCount: controller.bookingList.length,
           scrollDirection: Axis.vertical,
+          physics: BouncingScrollPhysics(),
           itemBuilder: (context, index) {
             var list = controller.bookingList[index];
             return Card(

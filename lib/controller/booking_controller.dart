@@ -1,7 +1,4 @@
-
-
 import 'dart:developer';
-
 import 'package:get/get.dart';
 import 'package:mie_ride/models/admin_booking_list_model.dart';
 import 'package:mie_ride/network/api_service.dart';
@@ -10,6 +7,8 @@ import 'package:mie_ride/network/urls.dart';
 class BookingController extends GetxController{
 
   var isLoading = false.obs;
+
+  var currentIndex = 0.obs;
 
   ApiService apiService = ApiService();
 

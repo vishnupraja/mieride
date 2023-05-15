@@ -32,6 +32,7 @@ class _CompleteOrderState extends State<CompleteOrder> {
         return Center(child: Text("No Completed Order"),);
       }else{
         return ListView.builder(
+          physics: BouncingScrollPhysics(),
           itemCount: controller.bookingList.length,
           scrollDirection: Axis.vertical,
           itemBuilder: (context, index) {
@@ -189,6 +190,29 @@ class _CompleteOrderState extends State<CompleteOrder> {
                                       fontWeight: FontWeight.bold)),
                             ],
                           ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text("Driver Name",
+                            style: TextStyle(
+                                fontSize: 10,
+                                color: MyColors.grey,
+                                fontWeight: FontWeight.bold)),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          list.driverName,
+                          style: TextStyle(
+                              fontSize: 10,
+                              color: MyColors.secondry,
+                              fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),

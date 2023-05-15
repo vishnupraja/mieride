@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mie_ride/controller/booking_controller.dart';
 import 'package:get/get.dart';
+import 'package:mie_ride/rout_helper/rout_helper.dart';
 import 'package:mie_ride/utils/text_field.dart';
+import 'package:mie_ride/view/home_view/booking/booking_details.dart';
 import '../../../utils/colors.dart';
+import 'confirm_order.dart';
 
 class PlaceOrder extends StatefulWidget {
   const PlaceOrder({Key? key}) : super(key: key);
@@ -31,6 +34,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
       }else{
         return ListView.builder(
           itemCount: controller.bookingList.length,
+          physics: BouncingScrollPhysics(),
           scrollDirection: Axis.vertical,
           itemBuilder: (context, index) {
             var list = controller.bookingList[index];
@@ -254,7 +258,9 @@ class _PlaceOrderState extends State<PlaceOrder> {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10)),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                controller.currentIndex.value = 1;
+                              },
                               child: Text(
                                 "Accept",
                                 style: TextStyle(fontSize: 8),

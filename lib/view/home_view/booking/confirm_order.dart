@@ -18,7 +18,10 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
   
   @override
   void initState() {
-    controller.bookingManagement("Confirmed");
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      controller.bookingManagement("Confirmed");
+    });
+
     super.initState();
   }
   
@@ -31,6 +34,7 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
         return Center(child: Text("No Confirm Order"),);
       }else{
         return ListView.builder(
+          physics: BouncingScrollPhysics(),
           itemCount: controller.bookingList.length,
           scrollDirection: Axis.vertical,
           itemBuilder: (context, index) {

@@ -14,15 +14,19 @@ class _HomePageState extends State<HomePage> {
   List list = [
     'Booking Managements',
     'Add coins',
-    /*'Surge pricing',*/
     'Rate management',
     'Ride Assignment',
+    'Add City',
+    'Surge pricing',
+    'Fair Cost'
   ];
   List<Color> color = [
     Colors.orange,
     Colors.pink,
     Colors.red,
-    /*Colors.green,*/
+    Colors.deepOrangeAccent,
+    Colors.green,
+    Colors.redAccent,
     Colors.deepOrangeAccent
   ];
   List<Image> image = [
@@ -42,13 +46,23 @@ class _HomePageState extends State<HomePage> {
         width: Get.width / 2,
         fit: BoxFit.fill,
         height: Get.height / 6.5),
-   /* Image(
+    Image(
+        image: AssetImage("assets/images/ride.png"),
+        width: Get.width / 2,
+        fit: BoxFit.fill,
+        height: Get.height / 6.5),
+    Image(
+        image: AssetImage("assets/images/AddCity.png"),
+        width: Get.width / 2,
+        fit: BoxFit.fill,
+        height: Get.height / 6.5),
+     Image(
         image: AssetImage("assets/images/rate.png"),
         width: Get.width / 2,
         fit: BoxFit.fill,
-        height: Get.height / 6.5),*/
+        height: Get.height / 6.5),
     Image(
-        image: AssetImage("assets/images/ride.png"),
+        image: AssetImage("assets/images/FairCost.png"),
         width: Get.width / 2,
         fit: BoxFit.fill,
         height: Get.height / 6.5),
@@ -71,7 +85,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: MyColors.secondry,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 70),
+        padding: const EdgeInsets.only(top: 20),
         child: GridView.builder(
           itemCount: list.length,
           shrinkWrap: true,
@@ -91,6 +105,12 @@ class _HomePageState extends State<HomePage> {
                     Get.toNamed(RouteHelper.getRideAssignmentScreenRoute());
                   }else if(index == 2){
                     Get.toNamed(RouteHelper.getRateManagementScreenRoute());
+                  }else if(index == 4){
+                    Get.toNamed(RouteHelper.getAddCityScreenRoute());
+                  }else if(index == 5){
+                    Get.toNamed(RouteHelper.getSurgePriceScreenRoute());
+                  }else if(index == 6){
+                    Get.toNamed(RouteHelper.getFairCostScreenRoute());
                   }
                 },
                 child: Container(
