@@ -250,7 +250,9 @@ class _PlaceOrderState extends State<PlaceOrder> {
                           height: 30,
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: ElevatedButton(
+                            child: controller.confirmLoading.value?
+                                Center(child: myIndicator(),):
+                            ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: MyColors.orange,
                                 foregroundColor: MyColors.white,
@@ -259,7 +261,10 @@ class _PlaceOrderState extends State<PlaceOrder> {
                                     borderRadius: BorderRadius.circular(10)),
                               ),
                               onPressed: () {
-                                controller.currentIndex.value = 1;
+                                controller.confirmBooking(list.bookingId, () {
+                                  controller.currentIndex.value = 1;
+                                });
+
                               },
                               child: Text(
                                 "Accept",
@@ -272,7 +277,9 @@ class _PlaceOrderState extends State<PlaceOrder> {
                           height: 30,
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: ElevatedButton(
+                            child: controller.cancelLoading.value?
+                            Center(child: myIndicator(),):
+                            ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: MyColors.green,
                                 foregroundColor: MyColors.white,
@@ -280,7 +287,11 @@ class _PlaceOrderState extends State<PlaceOrder> {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10)),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                controller.cancelBooking(list.bookingId, () {
+                                  controller.currentIndex.value = 4;
+                                });
+                              },
                               child: Text(
                                 "Reject",
                                 style: TextStyle(fontSize: 8),

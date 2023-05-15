@@ -2,8 +2,8 @@ import 'package:get/get.dart';
 import 'package:mie_ride/view/authentication/login_Screen.dart';
 import 'package:mie_ride/view/authentication/splace_screen.dart';
 import 'package:mie_ride/view/home_view/add_city/add_city.dart';
-import 'package:mie_ride/view/home_view/fair_cost/fair_coast.dart';
 import 'package:mie_ride/view/home_view/surge_pricing/surge_pricing.dart';
+import '../view/home_view/add_city/add_city_field.dart';
 import '../view/home_view/add_coin/view_user.dart';
 import '../view/home_view/booking/cancel_order.dart';
 import '../view/home_view/booking/complete_order.dart';
@@ -36,7 +36,7 @@ class RouteHelper{
   static const String addVehicle = '/addVehicle';
   static const String surgePrice = '/surgePrice';
   static const String addCity = '/addCity';
-  static const String fairCoast = '/fairCoast';
+  static const String addCityField = '/addCityField';
 
 
 
@@ -57,7 +57,7 @@ class RouteHelper{
   static getAddVehicleScreenRoute()=>addVehicle;
   static getSurgePriceScreenRoute()=>surgePrice;
   static getAddCityScreenRoute()=>addCity;
-  static getFairCostScreenRoute()=>fairCoast;
+  static getAddCityFieldScreenRoute()=>addCityField;
 
 
 
@@ -80,7 +80,7 @@ class RouteHelper{
     GetPage(name: addVehicle, page: ()=> const AddVehicle()),
     GetPage(name: surgePrice, page: ()=> const SurgePrice()),
     GetPage(name: addCity, page: ()=> const AddCity()),
-    GetPage(name: fairCoast, page: ()=> const FairCost()),
+    GetPage(name: addCityField, page: ()=> const AddCityField()),
 
 
   ];

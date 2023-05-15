@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
     'Ride Assignment',
     'Add City',
     'Surge pricing',
-    'Fair Cost'
+   /* 'Fair Cost'*/
   ];
   List<Color> color = [
     Colors.orange,
@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
     Colors.deepOrangeAccent,
     Colors.green,
     Colors.redAccent,
-    Colors.deepOrangeAccent
+    /*Colors.deepOrangeAccent*/
   ];
   List<Image> image = [
     Image(
@@ -61,11 +61,11 @@ class _HomePageState extends State<HomePage> {
         width: Get.width / 2,
         fit: BoxFit.fill,
         height: Get.height / 6.5),
-    Image(
+    /*Image(
         image: AssetImage("assets/images/FairCost.png"),
         width: Get.width / 2,
         fit: BoxFit.fill,
-        height: Get.height / 6.5),
+        height: Get.height / 6.5),*/
   ];
 
   @override
@@ -109,9 +109,9 @@ class _HomePageState extends State<HomePage> {
                     Get.toNamed(RouteHelper.getAddCityScreenRoute());
                   }else if(index == 5){
                     Get.toNamed(RouteHelper.getSurgePriceScreenRoute());
-                  }else if(index == 6){
+                  }/*else if(index == 6){
                     Get.toNamed(RouteHelper.getFairCostScreenRoute());
-                  }
+                  }*/
                 },
                 child: Container(
                   width: width,
