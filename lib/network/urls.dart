@@ -15,6 +15,9 @@ class URLS {
   static const String ADMIN_FETCH_CITY = "fetch_admin_city";
   static const String ADMIN_ALLOT_DRIVER = "admin_allot_booking_to_driver";
   static const String ADMIN_FETCH_DRIVER = "fetch_admin_driver_list";
+  static const String ADMIN_ADD_CITY_PRICE = "add_admin_city_price";
+  static const String ADMIN_FETCH_CITY_PRICE = "fetch_admin_rate_alldata";
+  static const String ADMIN_SURGE_PRICING = "fetch_surge_pricing";
 
 
 }
