@@ -33,7 +33,7 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
           );
         } else if (controller.bookingList.length == 0) {
           return Center(
-            child: Text("No Confirm Order"),
+            child: Text("No Order Confirmed"),
           );
         } else {
           return ListView.builder(
@@ -129,72 +129,45 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Customer Name",
-                                  style: TextStyle(
-                                      fontSize: 10,
-                                      color: MyColors.grey,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Text(list.userName,
-                                    style: TextStyle(
-                                        fontSize: 10,
-                                        color: MyColors.secondry,
-                                        fontWeight: FontWeight.bold)),
-                              ],
-                            ),
-                          ),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Vehicle Type",
-                                  style: TextStyle(
-                                      fontSize: 10,
-                                      color: MyColors.grey,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  list.vehicleType,
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Customer Name",
+                                style: TextStyle(
+                                    fontSize: 10,
+                                    color: MyColors.grey,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Text(list.userName,
                                   style: TextStyle(
                                       fontSize: 10,
                                       color: MyColors.secondry,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
+                                      fontWeight: FontWeight.bold)),
+                            ],
                           ),
-                          Expanded(
-                            child: Column(
-                              children: [
-                                const Text(
-                                  "Amount",
+                          SizedBox(width: 27,),
+                          Column(
+                            children: [
+                              const Text(
+                                "Amount",
+                                style: TextStyle(
+                                    fontSize: 10,
+                                    color: MyColors.grey,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Text(list.totalAmount,
                                   style: TextStyle(
                                       fontSize: 10,
-                                      color: MyColors.grey,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Text(list.totalAmount,
-                                    style: TextStyle(
-                                        fontSize: 10,
-                                        color: MyColors.secondry,
-                                        fontWeight: FontWeight.bold)),
-                              ],
-                            ),
+                                      color: MyColors.secondry,
+                                      fontWeight: FontWeight.bold)),
+                            ],
                           ),
                         ],
                       ),
@@ -247,77 +220,6 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
                       SizedBox(
                         height: 10,
                       ),
-                      /* Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      height: 30,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: MyColors.orange,
-                            foregroundColor: MyColors.white,
-                            minimumSize: Size(80, 30),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                          ),
-                          onPressed: () {},
-                          child: Text(
-                            "Accept",
-                            style: TextStyle(fontSize: 8),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 30,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: MyColors.green,
-                            foregroundColor: MyColors.white,
-                            minimumSize: Size(80, 30),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                          ),
-                          onPressed: () {},
-                          child: Text(
-                            "Reject",
-                            style: TextStyle(fontSize: 8),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                )*/
-                      /*SizedBox(
-                        width: 30,
-                      ),
-
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text("Address",
-                                style: TextStyle(
-                                    fontSize: 10,
-                                    color: MyColors.grey,
-                                    fontWeight: FontWeight.bold)),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              'mangal nager bhawarkua indore mp',
-                              style: TextStyle(
-                                  fontSize: 10,
-                                  color: MyColors.secondry,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ),*/
                     ],
                   ),
                 ),

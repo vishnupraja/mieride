@@ -1,16 +1,20 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:ui';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:mie_ride/models/admin_booking_list_model.dart';
+import 'package:mie_ride/models/admin_fetch_driver_model.dart';
 import 'package:mie_ride/network/api_service.dart';
 import 'package:mie_ride/network/urls.dart';
+import 'package:mie_ride/utils/SnackBar.dart';
 
 class BookingController extends GetxController{
 
   var isLoading = false.obs;
   var confirmLoading = false.obs;
   var cancelLoading = false.obs;
+  var driverLoading = false.obs;
+  var fetchDriverLoading = false.obs;
 
 
   var currentIndex = 0.obs;
@@ -18,6 +22,7 @@ class BookingController extends GetxController{
   ApiService apiService = ApiService();
 
   var bookingList = <AdminBookingListModel>[].obs;
+  var driverList = <AdminFetchDriverModel>[].obs;
 
   void bookingManagement(String status)async{
     isLoading.value = true;
@@ -103,6 +108,47 @@ class BookingController extends GetxController{
       log('Exception -----:>',error: e.toString());
     }
 
+  }
+
+  void allotDriver(BuildContext context,String bookingId,String driverId,VoidCallback callback)async{
+    driverLoading.value = true;
+    Map<String, dynamic> driveParameter ={
+      "booking_id"   : bookingId,
+      "driver_id"    : driverId,
+    };
+    log("driver allot parameter ------->:$driveParameter");
+
+    try{
+      final response = await apiService.postData(URLS.ADMIN_ALLOT_DRIVER, driveParameter);
+
+      var jsonString = jsonDecode(response.data);
+      log("driver response ----->:$jsonString");
+      var result = jsonString['result'];
+      if(result == "success"){
+        driverLoading.value = false;
+        showCustomSnackBar("Driver Alloted", context);
+        callback();
+      }else{
+        driverLoading.value = false;
+      }
+
+    }catch(e){
+      driverLoading.value = false;
+      log("Exception -----",error: e.toString());
+    }
+  }
+
+  void fetchDriver()async{
+    fetchDriverLoading.value = true;
+    try{
+      final response = await apiService.getData(URLS.ADMIN_FETCH_DRIVER);
+      log("fetch driver response ------>:${response.data}");
+      driverList.value  = adminFetchDriverModelFromJson(response.data);
+      fetchDriverLoading.value = false;
+    }catch(e){
+      fetchDriverLoading.value = false;
+      log("Exception -----",error: e.toString());
+    }
   }
 
 }

@@ -12,6 +12,9 @@ class URLS {
   static const String ADMIN_CONFIRM_BOOKING = "admin_confirm_booking";
   static const String ADMIN_CANCEL_BOOKING = "admin_cancel_booking";
   static const String ADMIN_ADD_CITY = "add_admin_city";
+  static const String ADMIN_FETCH_CITY = "fetch_admin_city";
+  static const String ADMIN_ALLOT_DRIVER = "admin_allot_booking_to_driver";
+  static const String ADMIN_FETCH_DRIVER = "fetch_admin_driver_list";
 
 
 }

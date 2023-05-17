@@ -30,7 +30,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
       if(controller.isLoading.value){
         return Center(child: myIndicator(),);
       }else if(controller.bookingList.length == 0){
-        return Center(child: Text("No Place Order"),);
+        return Center(child: Text("No Order Placed"),);
       }else{
         return ListView.builder(
           itemCount: controller.bookingList.length,
@@ -125,72 +125,45 @@ class _PlaceOrderState extends State<PlaceOrder> {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Customer Name",
-                                style: TextStyle(
-                                    fontSize: 10,
-                                    color: MyColors.grey,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text(list.userName,
-                                  style: TextStyle(
-                                      fontSize: 10,
-                                      color: MyColors.secondry,
-                                      fontWeight: FontWeight.bold)),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                "Vehicle Type",
-                                style: TextStyle(
-                                    fontSize: 10,
-                                    color: MyColors.grey,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                list.vehicleType,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Customer Name",
+                              style: TextStyle(
+                                  fontSize: 10,
+                                  color: MyColors.grey,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Text(list.userName,
                                 style: TextStyle(
                                     fontSize: 10,
                                     color: MyColors.secondry,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
+                                    fontWeight: FontWeight.bold)),
+                          ],
                         ),
-                        Expanded(
-                          child: Column(
-                            children: [
-                              const Text(
-                                "Amount",
+                       SizedBox(width: 27,),
+                        Column(
+                          children: [
+                            const Text(
+                              "Amount",
+                              style: TextStyle(
+                                  fontSize: 10,
+                                  color: MyColors.grey,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Text(list.totalAmount,
                                 style: TextStyle(
                                     fontSize: 10,
-                                    color: MyColors.grey,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text(list.totalAmount,
-                                  style: TextStyle(
-                                      fontSize: 10,
-                                      color: MyColors.secondry,
-                                      fontWeight: FontWeight.bold)),
-                            ],
-                          ),
+                                    color: MyColors.secondry,
+                                    fontWeight: FontWeight.bold)),
+                          ],
                         ),
                       ],
                     ),
@@ -300,33 +273,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                           ),
                         ),
                       ],
-                    )
-                    /*SizedBox(
-                        width: 30,
-                      ),
-
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text("Address",
-                                style: TextStyle(
-                                    fontSize: 10,
-                                    color: MyColors.grey,
-                                    fontWeight: FontWeight.bold)),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              'mangal nager bhawarkua indore mp',
-                              style: TextStyle(
-                                  fontSize: 10,
-                                  color: MyColors.secondry,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ),*/
+                    ),
                   ],
                 ),
               ),
@@ -334,6 +281,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
           },
         );
       }
-    });
+    },
+    );
   }
 }

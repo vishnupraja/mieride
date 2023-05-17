@@ -41,7 +41,9 @@ class _SplashScreenState extends State<SplashScreen> {
         Get.offNamed(RouteHelper.getLoginScreenRoute());
       });
     }else{
-      Get.offNamed(RouteHelper.getHomePageScreenRoute());
+     Timer(Duration(seconds: 2), (){
+       Get.offNamed(RouteHelper.getHomePageScreenRoute());
+     });
     }
   }
   

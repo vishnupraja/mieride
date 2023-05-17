@@ -1,10 +1,8 @@
-
-
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:mie_ride/models/admin_city_fetch_model.dart';
 import 'package:mie_ride/network/api_service.dart';
 import 'package:mie_ride/utils/SnackBar.dart';
 
@@ -16,6 +14,9 @@ class CityController extends GetxController{
   RxString latitude = ''.obs;
 
   var isLoading = false.obs;
+  var isLoadings = false.obs;
+
+  var CityList = <AdminFetchCityModel>[].obs;
 
   ApiService apiService = ApiService();
 
@@ -38,16 +39,36 @@ class CityController extends GetxController{
       if(result == "success"){
         isLoading.value = false;
         showCustomSnackBar("City Added", context);
+        adminCityFetch();
         Get.back();
       }else{
         isLoading.value = false;
-        showCustomSnackBar("something went wrong", context);
+        showCustomSnackBar(result.toString(), context);
       }
 
     }catch(e){
       isLoading.value = false;
       log("Exception ------:>",error: e.toString());
     }
+  }
+
+  void adminCityFetch()async{
+    isLoadings.value = true;
+
+    try{
+
+      final response = await apiService.getData(URLS.ADMIN_FETCH_CITY,);
+
+      log("city fetch response ----->:${response.data}");
+
+      CityList.value = adminFetchCityModelFromJson(response.data);
+      isLoadings.value = false;
+
+    }catch(e){
+      isLoadings.value = false;
+      log("Exception ------>: ",error: e.toString());
+    }
+
   }
 
 }

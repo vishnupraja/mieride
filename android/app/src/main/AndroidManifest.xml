@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mie_ride.mie_ride">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="mie_ride"
         android:name="${applicationName}"

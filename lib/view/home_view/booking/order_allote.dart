@@ -28,7 +28,7 @@ class _OrderAllotState extends State<OrderAllot> {
       if(controller.isLoading.value){
         return Center(child: myIndicator(),);
       }else if(controller.bookingList.length == 0){
-        return Center(child: Text("No Allot Order"),);
+        return Center(child: Text("No Order Allot"),);
       }else{
         return ListView.builder(
           physics: BouncingScrollPhysics(),
@@ -146,21 +146,19 @@ class _OrderAllotState extends State<OrderAllot> {
                           ),
                         ),
                         Expanded(
-                          child: Column(
+                          child:  Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
-                                "Vehicle Type",
-                                style: TextStyle(
-                                    fontSize: 10,
-                                    color: MyColors.grey,
-                                    fontWeight: FontWeight.bold),
-                              ),
+                              const Text("Driver Name",
+                                  style: TextStyle(
+                                      fontSize: 10,
+                                      color: MyColors.grey,
+                                      fontWeight: FontWeight.bold)),
                               const SizedBox(
                                 height: 5,
                               ),
                               Text(
-                                list.vehicleType,
+                                list.driverName,
                                 style: TextStyle(
                                     fontSize: 10,
                                     color: MyColors.secondry,
@@ -189,29 +187,6 @@ class _OrderAllotState extends State<OrderAllot> {
                                       fontWeight: FontWeight.bold)),
                             ],
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text("Driver Name",
-                            style: TextStyle(
-                                fontSize: 10,
-                                color: MyColors.grey,
-                                fontWeight: FontWeight.bold)),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          list.driverName,
-                          style: TextStyle(
-                              fontSize: 10,
-                              color: MyColors.secondry,
-                              fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),

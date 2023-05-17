@@ -12,7 +12,7 @@ import '../view/home_view/booking/order_allote.dart';
 import '../view/home_view/booking/place_order.dart';
 import '../view/home_view/booking/booking_details.dart';
 import '../view/home_view/home_screen.dart';
-import '../view/home_view/rate_managment/add_vehicle.dart';
+import '../view/home_view/rate_managment/add_rate.dart';
 import '../view/home_view/rate_managment/rate_manage.dart';
 import '../view/home_view/ride_assignment/driver_list.dart';
 import '../view/home_view/ride_assignment/ride_assignment.dart';
@@ -33,7 +33,7 @@ class RouteHelper{
   static const String rideassignment = '/rideassignment';
   static const String driver = '/driver';
   static const String rateManage = '/rateManage';
-  static const String addVehicle = '/addVehicle';
+  static const String addRate = '/addRate';
   static const String surgePrice = '/surgePrice';
   static const String addCity = '/addCity';
   static const String addCityField = '/addCityField';
@@ -54,7 +54,7 @@ class RouteHelper{
   static getRideAssignmentScreenRoute()=>rideassignment;
   static getDriverScreenRoute()=>driver;
   static getRateManagementScreenRoute()=>rateManage;
-  static getAddVehicleScreenRoute()=>addVehicle;
+  static getAddRateManagementScreenRoute()=>addRate;
   static getSurgePriceScreenRoute()=>surgePrice;
   static getAddCityScreenRoute()=>addCity;
   static getAddCityFieldScreenRoute()=>addCityField;
@@ -77,7 +77,7 @@ class RouteHelper{
     GetPage(name: rideassignment, page: ()=> const RideAssignment()),
     GetPage(name: driver, page: ()=> const Driver()),
     GetPage(name: rateManage, page: ()=> const RateManagement()),
-    GetPage(name: addVehicle, page: ()=> const AddVehicle()),
+    GetPage(name: addRate, page: ()=> const AddRateManagement()),
     GetPage(name: surgePrice, page: ()=> const SurgePrice()),
     GetPage(name: addCity, page: ()=> const AddCity()),
     GetPage(name: addCityField, page: ()=> const AddCityField()),

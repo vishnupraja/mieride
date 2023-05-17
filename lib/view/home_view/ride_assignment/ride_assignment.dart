@@ -16,8 +16,8 @@ class _RideAssignmentState extends State<RideAssignment> {
   BookingController controller = Get.put(BookingController());
 
   var idList = [];
+  String allId = "";
   bool selected = false;
-  List<int> id = [];
   List<int> selectedIndexes = [];
 
   void toggleIndex(int i) {
@@ -34,7 +34,9 @@ class _RideAssignmentState extends State<RideAssignment> {
 
   @override
   void initState() {
-    controller.bookingManagement("Confirmed");
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      controller.bookingManagement("Confirmed");
+    });
     super.initState();
   }
 
@@ -44,7 +46,7 @@ class _RideAssignmentState extends State<RideAssignment> {
       backgroundColor: MyColors.primary,
       appBar: AppBar(
         backgroundColor: MyColors.secondry,
-        title: Text('Ride'),
+        title: Text('Ride Manage'),
         centerTitle: true,
       ),
       body: Obx(() {
@@ -70,6 +72,7 @@ class _RideAssignmentState extends State<RideAssignment> {
                   } else {
                     idList.add(list.bookingId);
                     idList.join(",");
+
                   }
                 },
                 child: Card(
@@ -159,72 +162,45 @@ class _RideAssignmentState extends State<RideAssignment> {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Customer Name",
-                                    style: TextStyle(
-                                        fontSize: 10,
-                                        color: MyColors.grey,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(list.userName,
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          color: MyColors.secondry,
-                                          fontWeight: FontWeight.bold)),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    "Vehicle Type",
-                                    style: TextStyle(
-                                        fontSize: 10,
-                                        color: MyColors.grey,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    list.vehicleType,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Customer Name",
+                                  style: TextStyle(
+                                      fontSize: 10,
+                                      color: MyColors.grey,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Text(list.userName,
                                     style: TextStyle(
                                         fontSize: 10,
                                         color: MyColors.secondry,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
+                                        fontWeight: FontWeight.bold)),
+                              ],
                             ),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  const Text(
-                                    "Amount",
+                            SizedBox(width: 27,),
+                            Column(
+                              children: [
+                                const Text(
+                                  "Amount",
+                                  style: TextStyle(
+                                      fontSize: 10,
+                                      color: MyColors.grey,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Text(list.totalAmount,
                                     style: TextStyle(
                                         fontSize: 10,
-                                        color: MyColors.grey,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(list.totalAmount,
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          color: MyColors.secondry,
-                                          fontWeight: FontWeight.bold)),
-                                ],
-                              ),
+                                        color: MyColors.secondry,
+                                        fontWeight: FontWeight.bold)),
+                              ],
                             ),
                           ],
                         ),
@@ -299,9 +275,10 @@ class _RideAssignmentState extends State<RideAssignment> {
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
         child: custom_button(
           voidCallback: () {
-            print(idList);
+            allId = idList.join(",");
+            print(allId);
             Get.toNamed(RouteHelper.getDriverScreenRoute(),
-                arguments: {"id": idList});
+                arguments: {"id": allId});
           },
           text: 'Allot Driver',
         ),
