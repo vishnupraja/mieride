@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mie_ride/utils/SnackBar.dart';
 import 'package:mie_ride/utils/colors.dart';
 import 'package:mie_ride/utils/text_field.dart';
-
 import '../../../controller/city_controller.dart';
 import '../../../controller/ride_management_controller.dart';
 
@@ -14,6 +14,7 @@ class AddRateManagement extends StatefulWidget {
 }
 
 class _AddRateManagementState extends State<AddRateManagement> {
+
   TextEditingController rideCtr = TextEditingController();
   TextEditingController privateCtr = TextEditingController();
   CityController controller = Get.put(CityController());
@@ -184,12 +185,31 @@ class _AddRateManagementState extends State<AddRateManagement> {
         child: Obx(() => custom_button(
           loading: rideManagementController.isLoading.value,
           voidCallback: () {
-            rideManagementController.adminAddCityPrice(context, _chosenValue.toString(),
-                dropValue.toString(), rideCtr.text, privateCtr.text);
+            if(validation() == true){
+              rideManagementController.adminAddCityPrice(context, _chosenValue.toString(),
+                  dropValue.toString(), rideCtr.text, privateCtr.text);
+            }
+
           },
           text: 'Add Rate',
         ),)
       ),
     );
   }
+
+  bool validation(){
+    if(_chosenValue == null){
+      showCustomSnackBar("please choose city", context);
+    }else if(dropValue == null){
+      showCustomSnackBar("please choose city", context);
+    }else if(rideCtr.text.isEmpty){
+      showCustomSnackBar("please choose Ride Share Price", context);
+    }else if(privateCtr.text.isEmpty){
+      showCustomSnackBar("please choose Private Ride Price", context);
+    }else{
+      return true;
+    }
+    return  false;
+  }
+
 }

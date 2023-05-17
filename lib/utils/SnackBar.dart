@@ -6,7 +6,7 @@ void showCustomSnackBar(String message, BuildContext context,) {
       dismissDirection: DismissDirection.horizontal,
       margin: const EdgeInsets.all(10.0),
       duration: const Duration(milliseconds: 1500),
-      backgroundColor: MyColors.blue,
+      backgroundColor: MyColors.secondry,
       behavior: SnackBarBehavior.floating,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       content: Text(message, style:const TextStyle(color: Colors.white)),
