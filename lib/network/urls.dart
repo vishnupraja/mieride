@@ -18,6 +18,7 @@ class URLS {
   static const String ADMIN_ADD_CITY_PRICE = "add_admin_city_price";
   static const String ADMIN_FETCH_CITY_PRICE = "fetch_admin_rate_alldata";
   static const String ADMIN_SURGE_PRICING = "fetch_surge_pricing";
+  static const String ADMIN_SURGE_PRICING_ADD = "add_admin_surge_cost";
 
 
 }

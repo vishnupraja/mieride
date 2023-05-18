@@ -16,6 +16,7 @@ import '../view/home_view/rate_managment/add_rate.dart';
 import '../view/home_view/rate_managment/rate_manage.dart';
 import '../view/home_view/ride_assignment/driver_list.dart';
 import '../view/home_view/ride_assignment/ride_assignment.dart';
+import '../view/home_view/surge_pricing/surge_price_add.dart';
 
 class RouteHelper{
 
@@ -37,6 +38,7 @@ class RouteHelper{
   static const String surgePrice = '/surgePrice';
   static const String addCity = '/addCity';
   static const String addCityField = '/addCityField';
+  static const String surgePriceAdd = '/surgePriceAdd';
 
 
 
@@ -58,6 +60,7 @@ class RouteHelper{
   static getSurgePriceScreenRoute()=>surgePrice;
   static getAddCityScreenRoute()=>addCity;
   static getAddCityFieldScreenRoute()=>addCityField;
+  static getSurgePriceAddScreenRoute()=>surgePriceAdd;
 
 
 
@@ -81,6 +84,7 @@ class RouteHelper{
     GetPage(name: surgePrice, page: ()=> const SurgePrice()),
     GetPage(name: addCity, page: ()=> const AddCity()),
     GetPage(name: addCityField, page: ()=> const AddCityField()),
+    GetPage(name: surgePriceAdd, page: ()=> const SurgePriceAdd()),
 
 
   ];

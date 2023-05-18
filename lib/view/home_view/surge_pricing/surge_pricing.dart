@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mie_ride/rout_helper/rout_helper.dart';
 import 'package:mie_ride/utils/colors.dart';
 
 import '../../../controller/surge_price_controller.dart';
@@ -93,7 +94,7 @@ class _SurgePriceState extends State<SurgePrice> {
                                     height: 5,
                                   ),
                                   Text(
-                                    list.surgeTime,
+                                    list.surgeTime + " " + "Minute",
                                     style: TextStyle(
                                         fontSize: 10,
                                         color: MyColors.secondry,
@@ -147,8 +148,9 @@ class _SurgePriceState extends State<SurgePrice> {
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
         child: custom_button(
           voidCallback: () {
+            Get.toNamed(RouteHelper.getSurgePriceAddScreenRoute());
           },
-          text: 'Add Rate',
+          text: 'Add Surge price',
         ),
       ),
     );
