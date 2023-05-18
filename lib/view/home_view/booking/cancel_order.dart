@@ -17,7 +17,10 @@ class _CancelOrderState extends State<CancelOrder> {
 
   @override
   void initState() {
-    controller.bookingManagement("Cancelled");
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      controller.bookingManagement("Cancelled");
+    });
+
     super.initState();
   }
 

@@ -18,7 +18,10 @@ class _OrderAllotState extends State<OrderAllot> {
   
   @override
   void initState() {
-    controller.bookingManagement("Alloted");
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      controller.bookingManagement("Alloted");
+    });
+
     super.initState();
   }
   

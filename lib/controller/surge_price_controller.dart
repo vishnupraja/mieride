@@ -1,14 +1,10 @@
-
-
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:mie_ride/models/surge_price_model.dart';
 import 'package:mie_ride/network/api_service.dart';
 import 'package:mie_ride/utils/SnackBar.dart';
-
 import '../network/urls.dart';
 
 class SurgePriceController extends GetxController {

@@ -18,7 +18,10 @@ class _CompleteOrderState extends State<CompleteOrder> {
   
   @override
   void initState() {
-    controller.bookingManagement("Completed");
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      controller.bookingManagement("Completed");
+    });
+
     super.initState();
   }
   
