@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mie_ride/controller/booking_controller.dart';
 import 'package:mie_ride/utils/text_field.dart';
-
 import '../../../utils/colors.dart';
 
 class CancelOrder extends StatefulWidget {
