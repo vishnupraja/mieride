@@ -25,9 +25,17 @@ class _RateManagementState extends State<RateManagement> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyColors.primary,
+      backgroundColor: MyColors.backgroundColor,
       appBar: AppBar(
-        backgroundColor: MyColors.secondry,
+        toolbarHeight: 40,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(25),
+                bottomRight: Radius.circular(25)
+            )
+        ),
+        backgroundColor: MyColors.gradiant,
         title: Text('Rate Management'),
         centerTitle: true,
       ),
@@ -53,110 +61,104 @@ class _RateManagementState extends State<RateManagement> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "City Name(Source)",
+                        Container(
+                          height: 30,
+                          color: MyColors.listGradiant,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "City Name(Source)",
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      color: MyColors.secondry,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(list.city1Name,
                                     style: TextStyle(
-                                        fontSize: 10,
-                                        color: MyColors.grey,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(list.city1Name,
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          color: MyColors.secondry,
-                                          fontWeight: FontWeight.bold)),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    "City Name(Destination)",
-                                    style: TextStyle(
-                                        fontSize: 10,
-                                        color: MyColors.grey,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    list.city2Name,
-                                    style: TextStyle(
-                                        fontSize: 10,
+                                        fontSize: 12,
                                         color: MyColors.secondry,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
+                                        fontWeight: FontWeight.bold)),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Ride Share Price",
+                        SizedBox(height: 8,),
+                        Container(
+                          height: 30,
+                          color: MyColors.listGradiant,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "City Name(Destination)",
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      color: MyColors.secondry,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(list.city2Name,
                                     style: TextStyle(
-                                        fontSize: 10,
-                                        color: MyColors.grey,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(list.rideSharePrice,
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          color: MyColors.secondry,
-                                          fontWeight: FontWeight.bold)),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    "Private Ride Price",
-                                    style: TextStyle(
-                                        fontSize: 10,
-                                        color: MyColors.grey,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    list.privateRidePrice,
-                                    style: TextStyle(
-                                        fontSize: 10,
+                                        fontSize: 12,
                                         color: MyColors.secondry,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
+                                        fontWeight: FontWeight.bold)),
+                              ],
                             ),
-                          ],
+                          ),
+                        ),
+                        SizedBox(height: 8,),
+                        Container(
+                          height: 30,
+                          color: MyColors.listGradiant,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Ride Share Price",
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      color: MyColors.secondry,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(list.rideSharePrice,
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: MyColors.secondry,
+                                        fontWeight: FontWeight.bold)),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 8,),
+                        Container(
+                          height: 30,
+                          color: MyColors.listGradiant,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Private Ride Price",
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      color: MyColors.secondry,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(list.privateRidePrice,
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: MyColors.secondry,
+                                        fontWeight: FontWeight.bold)),
+                              ],
+                            ),
+                          ),
                         ),
                       ],
                     ),

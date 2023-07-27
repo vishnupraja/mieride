@@ -38,17 +38,17 @@ class _SurgePriceAddState extends State<SurgePriceAdd> {
             custom_textfield(
               labletext: "Surge Type",
               textInputType: TextInputType.text,
-              textEditingController: typeCtr,
+              textEditingController: typeCtr, hintText: 'Surge Type',
             ),
             custom_textfield(
               labletext: "Surge time",
               textInputType: TextInputType.text,
-              textEditingController: timeCtr,
+              textEditingController: timeCtr, hintText: 'Surge Type',
             ),
             custom_textfield(
               labletext: "Extra Price",
               textInputType: TextInputType.text,
-              textEditingController: priceCtr,
+              textEditingController: priceCtr, hintText: 'Surge Type',
             ),
             SizedBox(
               height: 30,
@@ -56,7 +56,7 @@ class _SurgePriceAddState extends State<SurgePriceAdd> {
            Obx(() =>  custom_button(
              loading: controller.isLoadings.value,
                voidCallback: () {
-               controller.surgeAddPrice(context, typeCtr.text, priceCtr.text, timeCtr.text);
+
            }, text: "Add Surge Price"),)
           ],
         ),

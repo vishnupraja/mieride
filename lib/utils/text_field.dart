@@ -4,6 +4,7 @@ import 'colors.dart';
 
 class custom_textfield extends StatelessWidget {
   String labletext;
+  String hintText;
   Widget? icon;
   Widget? icons;
   final bool ishide;
@@ -13,6 +14,7 @@ class custom_textfield extends StatelessWidget {
   custom_textfield(
       {super.key,
       required this.labletext,
+        required this.hintText,
       this.icon,
       this.icons,
       this.textInputType,
@@ -22,7 +24,7 @@ class custom_textfield extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.only(top: 5),
       child: Column(
         children: [
           Align(
@@ -37,7 +39,19 @@ class custom_textfield extends StatelessWidget {
                 borderRadius: BorderRadius.circular(
                   10,
                 ),
-                border: Border.all(color: MyColors.secondry, width: 1)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 8.0, // soften the shadow
+                    spreadRadius: 2.0, //extend the shadow
+                    offset: Offset(
+                      0.0, // Move to right 5  horizontally
+                      0.0, // Move to bottom 5 Vertically
+                    ),
+                  )
+                ],
+                color: MyColors.white,
+                border: Border.all(color: MyColors.white,)),
             child: TextFormField(
               controller: textEditingController,
               obscureText: ishide,
@@ -46,7 +60,7 @@ class custom_textfield extends StatelessWidget {
                   border: InputBorder.none,
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
-                  hintText: labletext,
+                  hintText: hintText,
                   suffixIcon: icon,
                   prefixIcon: icons,
                   hintStyle:
@@ -76,16 +90,21 @@ class custom_button extends StatelessWidget {
     return SizedBox(
       height: 50,
       width: context.width / 1.5,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: MyColors.secondry,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(10), topRight: Radius.circular(10)),
+      child: InkWell(
+        onTap: voidCallback,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [MyColors.gradiant, MyColors.gradiant2],
+            ),
           ),
+            child: Center(
+              child: loading ? myIndicator() : Text(text),
+            )
         ),
-        onPressed: voidCallback,
-        child: loading ? myIndicator() : Text(text),
       ),
     );
   }

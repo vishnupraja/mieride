@@ -32,10 +32,18 @@ class _AddRateManagementState extends State<AddRateManagement> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyColors.primary,
+      backgroundColor: MyColors.backgroundColor,
       appBar: AppBar(
+        toolbarHeight: 40,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(25),
+                bottomRight: Radius.circular(25)
+            )
+        ),
         centerTitle: true,
-        backgroundColor: MyColors.secondry,
+        backgroundColor: MyColors.gradiant,
         title: Text('Add Rate'),
       ),
       body: Obx(
@@ -56,19 +64,25 @@ class _AddRateManagementState extends State<AddRateManagement> {
                   ),
                   Container(
                     decoration: BoxDecoration(
+                      color: MyColors.white,
                         boxShadow: [
                           BoxShadow(
-                              blurRadius: 1,
-                              color: MyColors.secondry,
-                              blurStyle: BlurStyle.outer),
+                            color: Colors.grey,
+                            blurRadius: 8.0, // soften the shadow
+                            spreadRadius: 2.0, //extend the shadow
+                            offset: Offset(
+                              0.0, // Move to right 5  horizontally
+                              0.0, // Move to bottom 5 Vertically
+                            ),
+                          )
                         ],
                         borderRadius: BorderRadius.circular(
                           10,
                         ),
-                        border: Border.all(color: MyColors.secondry, width: 0)),
+                       ),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton(
-                        dropdownColor: MyColors.primary,
+                        dropdownColor: MyColors.gradiant,
                         hint: const Text(
                           'Select City',
                           style: TextStyle(color: MyColors.hintColor),
@@ -115,19 +129,25 @@ class _AddRateManagementState extends State<AddRateManagement> {
                   ),
                   Container(
                     decoration: BoxDecoration(
+                        color: MyColors.white,
                         boxShadow: [
                           BoxShadow(
-                              blurRadius: 1,
-                              color: MyColors.secondry,
-                              blurStyle: BlurStyle.outer),
+                            color: Colors.grey,
+                            blurRadius: 8.0, // soften the shadow
+                            spreadRadius: 2.0, //extend the shadow
+                            offset: Offset(
+                              0.0, // Move to right 5  horizontally
+                              0.0, // Move to bottom 5 Vertically
+                            ),
+                          )
                         ],
                         borderRadius: BorderRadius.circular(
                           10,
                         ),
-                        border: Border.all(color: MyColors.secondry, width: 0)),
+                       ),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton(
-                          dropdownColor: MyColors.primary,
+                          dropdownColor: MyColors.gradiant,
                           hint: const Text(
                             'Select City',
                             style: TextStyle(color: MyColors.hintColor),
@@ -167,12 +187,12 @@ class _AddRateManagementState extends State<AddRateManagement> {
                   custom_textfield(
                     labletext: "Ride Share Price",
                     textInputType: TextInputType.number,
-                    textEditingController: rideCtr,
+                    textEditingController: rideCtr, hintText: 'Ride Share Price',
                   ),
                   custom_textfield(
                     labletext: "Private Ride Price",
                     textEditingController: privateCtr,
-                    textInputType: TextInputType.number,
+                    textInputType: TextInputType.number, hintText: 'Ride Share Price',
                   )
                 ],
               ),

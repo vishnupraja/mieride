@@ -31,10 +31,18 @@ class _DriverState extends State<Driver> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyColors.primary,
+      backgroundColor: MyColors.backgroundColor,
       appBar: AppBar(
-        backgroundColor: MyColors.secondry,
-        title: Text("Driver"),
+        toolbarHeight: 40,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(25),
+                bottomRight: Radius.circular(25)
+            )
+        ),
+        backgroundColor: MyColors.gradiant,
+        title: Text("Ride Assignment"),
         centerTitle: true,
       ),
       body: Obx((){
@@ -64,131 +72,135 @@ class _DriverState extends State<Driver> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Driver Name",
+                        Container(
+                          height: 30,
+                          color: MyColors.listGradiant,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Driver Name",
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      color: MyColors.secondry,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(list.driverName,
                                     style: TextStyle(
-                                        fontSize: 10,
-                                        color: MyColors.grey,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(list.driverName,
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          color: MyColors.secondry,
-                                          fontWeight: FontWeight.bold)),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    "Email",
-                                    style: TextStyle(
-                                        fontSize: 10,
-                                        color: MyColors.grey,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    list.email,
-                                    style: TextStyle(
-                                        fontSize: 10,
+                                        fontSize: 12,
                                         color: MyColors.secondry,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
+                                        fontWeight: FontWeight.bold)),
+                              ],
                             ),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  const Text(
-                                    "Status",
-                                    style: TextStyle(
-                                        fontSize: 10,
-                                        color: MyColors.grey,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(list.status,
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          color: MyColors.secondry,
-                                          fontWeight: FontWeight.bold)),
-                                ],
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Phone",
+                        SizedBox(height: 8,),
+                        Container(
+                          height: 30,
+                          color: MyColors.listGradiant,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Email",
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      color: MyColors.secondry,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(list.email,
                                     style: TextStyle(
-                                        fontSize: 10,
-                                        color: MyColors.grey,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(list.phone,
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          color: MyColors.secondry,
-                                          fontWeight: FontWeight.bold)),
-                                ],
-                              ),
+                                        fontSize: 12,
+                                        color: MyColors.secondry,
+                                        fontWeight: FontWeight.bold)),
+                              ],
                             ),
-                          ],
+                          ),
+                        ),
+                        SizedBox(height: 8,),
+                        Container(
+                          height: 30,
+                          color: MyColors.listGradiant,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Status",
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      color: MyColors.secondry,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(list.status,
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: MyColors.secondry,
+                                        fontWeight: FontWeight.bold)),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 8,),
+                        Container(
+                          height: 30,
+                          color: MyColors.listGradiant,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Contact",
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      color: MyColors.secondry,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(list.phone,
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: MyColors.secondry,
+                                        fontWeight: FontWeight.bold)),
+                              ],
+                            ),
+                          ),
                         ),
                         SizedBox(
                           height: 10,
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text("Address",
-                                style: TextStyle(
-                                    fontSize: 10,
-                                    color: MyColors.grey,
-                                    fontWeight: FontWeight.bold)),
-                            const SizedBox(
-                              height: 5,
+                        Card(
+                          color: Colors.greenAccent,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Address",
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      color: MyColors.secondry,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(
+                                  width: Get.width/2,
+                                  child: Text( list.address,
+                                      style: TextStyle(
+                                          fontSize: 12,
+                                          color: MyColors.secondry,
+                                          fontWeight: FontWeight.bold)),
+                                ),
+                              ],
                             ),
-                            Text(
-                              list.address,
-                              style: TextStyle(
-                                  fontSize: 10,
-                                  color: MyColors.secondry,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
+                          ),
                         ),
+
                         Align(
                           alignment: Alignment.bottomRight,
                           child:  selectedIndex == index?Icon(Icons.check_circle,color: MyColors.green,):null,

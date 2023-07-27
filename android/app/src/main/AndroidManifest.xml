@@ -2,7 +2,7 @@
     package="com.mie_ride.mie_ride">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="mie_ride"
+        android:label="MieRideAdmin"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -24,11 +24,19 @@ class _ViewUserState extends State<ViewUser> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: MyColors.primary,
+        backgroundColor: MyColors.backgroundColor,
         appBar: AppBar(
-          title: Text("ViewUser"),
+          title: Text("AddCoin"),
+          toolbarHeight: 40,
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(25),
+                  bottomRight: Radius.circular(25)
+              )
+          ),
           centerTitle: true,
-          backgroundColor: MyColors.secondry,
+          backgroundColor: MyColors.gradiant,
         ),
         body: Obx(() {
           if (controller.isLoading.value) {
@@ -54,106 +62,94 @@ class _ViewUserState extends State<ViewUser> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                        Container(
+                          height: 30,
+                          color: MyColors.listGradiant,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
                                   "Name",
                                   style: TextStyle(
-                                      fontSize: 10,
-                                      color: MyColors.grey,
+                                      fontSize: 12,
+                                      color: MyColors.secondry,
                                       fontWeight: FontWeight.bold),
-                                ),
-                                const SizedBox(
-                                  height: 5,
                                 ),
                                 Text(list.userName,
                                     style: TextStyle(
-                                        fontSize: 10,
+                                        fontSize: 12,
                                         color: MyColors.secondry,
                                         fontWeight: FontWeight.bold)),
                               ],
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                          ),
+                        ),
+                        SizedBox(height: 8,),
+                        Container(
+                          height: 30,
+                          color: MyColors.listGradiant,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Text(
+                                Text(
                                   "Email",
                                   style: TextStyle(
-                                      fontSize: 10,
-                                      color: MyColors.grey,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  list.email,
-                                  style: TextStyle(
-                                      fontSize: 10,
+                                      fontSize: 12,
                                       color: MyColors.secondry,
                                       fontWeight: FontWeight.bold),
                                 ),
+                                Text(list.email,
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: MyColors.secondry,
+                                        fontWeight: FontWeight.bold)),
                               ],
                             ),
-                          ],
+                          ),
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                        SizedBox(height: 8,),
+                        Container(
+                          height: 30,
+                          color: MyColors.listGradiant,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
                                   "Wallet Balance",
                                   style: TextStyle(
-                                      fontSize: 10,
-                                      color: MyColors.grey,
+                                      fontSize: 12,
+                                      color: MyColors.secondry,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Text("\$${list.walletBalance}",
+                                Text(list.walletBalance,
                                     style: TextStyle(
-                                        fontSize: 10,
+                                        fontSize: 12,
                                         color: MyColors.secondry,
                                         fontWeight: FontWeight.bold)),
                               ],
                             ),
-                            SizedBox(
-                              height: 30,
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: MyColors.orange,
-                                    foregroundColor: MyColors.white,
-                                    minimumSize: Size(80, 30),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                  ),
-                                  onPressed: () {
-                                    _showTextInputDialog(context, list.userId,
-                                        list.walletBalance);
-                                  },
-                                  child: Text(
-                                    "Add Coin",
-                                    style: TextStyle(fontSize: 8),
-                                  ),
-                                ),
-                              ),
+                          ),
+                        ),
+                        SizedBox(height: 10,),
+                        Center(
+                          child: SizedBox(
+                            height: 40,
+                            width: Get.width/3,
+                            child: Padding(
+                              padding:
+                              const EdgeInsets.symmetric(horizontal: 10),
+                              child: custom_button(voidCallback: () {
+                                _showTextInputDialog(context, list.userId,
+                                    list.walletBalance);
+                              }, text: 'Add Coins',)
                             ),
-                          ],
+                          ),
                         ),
                       ],
                     ),
@@ -174,6 +170,7 @@ class _ViewUserState extends State<ViewUser> {
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Image.asset('assets/images/coinPopImage.png'),
                 Row(
                   children: [
                     const Text('Total Credit:- '),
@@ -191,12 +188,28 @@ class _ViewUserState extends State<ViewUser> {
             ),
             content: Container(
               height: 50,
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 8.0, // soften the shadow
+                    spreadRadius: 2.0, //extend the shadow
+                    offset: Offset(
+                      0.0, // Move to right 5  horizontally
+                      0.0, // Move to bottom 5 Vertically
+                    ),
+                  )
+                ],
+              ),
               child: TextField(
                 keyboardType: TextInputType.number,
                 controller: coinController,
+
                 decoration: const InputDecoration(
-                    border: OutlineInputBorder(
-                        borderSide: BorderSide(color: MyColors.secondry))),
+                  filled: true,
+                    fillColor: MyColors.textFieldBack,
+                  border: InputBorder.none
+                   ),
               ),
             ),
             actions: <Widget>[

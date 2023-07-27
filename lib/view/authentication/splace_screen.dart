@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mie_ride/rout_helper/rout_helper.dart';
+import 'package:mie_ride/utils/colors.dart';
 import 'package:mie_ride/utils/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -26,12 +27,16 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Image.asset(
-      'assets/images/SplashImage.png',
-      height: context.height,
-      width: context.width,
-      fit: BoxFit.fill,
-    ));
+        body: Container(
+          height: Get.height,
+          width: Get.width,
+          decoration: BoxDecoration(
+            color: MyColors.backgroundColor
+          ),
+          child: Center(
+            child: Image.asset("assets/images/logo.png",color: MyColors.gradiant,),
+          ),
+        ));
   }
   
   void getData()async{

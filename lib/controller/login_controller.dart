@@ -26,6 +26,7 @@ class LoginController extends GetxController{
       "contact"  : contact,
       "password" : password,
     };
+    log('login parameter------>$parameter');
     try{
 
       final response = await apiService.postData(URLS.ADMIN_LOGIN, parameter);

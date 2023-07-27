@@ -43,9 +43,17 @@ class _BookingDetailState extends State<BookingDetail> {
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
-      backgroundColor: MyColors.primary,
+      backgroundColor: MyColors.backgroundColor,
       appBar: AppBar(
-        backgroundColor: MyColors.secondry,
+        backgroundColor: MyColors.gradiant,
+        toolbarHeight: 40,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(25),
+                bottomRight: Radius.circular(25)
+            )
+        ),
         title: Text('Booking'),
         centerTitle: true,
       ),
@@ -84,10 +92,13 @@ class _BookingDetailState extends State<BookingDetail> {
                             },
                           style: ElevatedButton.styleFrom(
                               padding: const EdgeInsets.all(5),
-                              backgroundColor:controller.currentIndex.value==index? MyColors.blue:MyColors.white,
+                              backgroundColor:controller.currentIndex.value==index? MyColors.gradiant:MyColors.white,
                               foregroundColor: controller.currentIndex.value==index? MyColors.white:MyColors.secondry,
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10))),
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(10),
+                                    topRight: Radius.circular(10)
+                                  ))),
                           child: Text(
                             items[index].toString(),
                             style:const TextStyle(fontSize: 10),

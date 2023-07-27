@@ -38,7 +38,7 @@ class _AddCityFieldState extends State<AddCityField> {
                     custom_textfield(
                       labletext: "Enter City Name",
                       textEditingController: cityCtr,
-                      textInputType: TextInputType.text,
+                      textInputType: TextInputType.text, hintText: 'Enter City Name',
                     ),
                     SizedBox(
                       height: 20,

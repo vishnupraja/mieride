@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mie_ride/rout_helper/rout_helper.dart';
 import 'package:mie_ride/utils/colors.dart';
+import 'package:mie_ride/utils/shared_preferences.dart';
+import 'package:mie_ride/view/authentication/login_Screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,89 +13,355 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List list = [
-    'Booking Managements',
-    'Add coins',
-    'Rate management',
-    'Ride Assignment',
-    'Add City',
-    'Surge pricing',
-   /* 'Fair Cost'*/
-  ];
-  List<Color> color = [
-    Colors.orange,
-    Colors.pink,
-    Colors.red,
-    Colors.deepOrangeAccent,
-    Colors.green,
-    Colors.redAccent,
-    /*Colors.deepOrangeAccent*/
-  ];
-  List<Image> image = [
-    Image(
-      image: AssetImage("assets/images/booking_management.png"),
-      width: Get.width / 2,
-      fit: BoxFit.fill,
-      height: Get.height / 6.5,
-    ),
-    Image(
-        image: AssetImage("assets/images/Coin.png"),
-        width: Get.width / 2,
-        fit: BoxFit.fill,
-        height: Get.height / 6.5),
-    Image(
-        image: AssetImage("assets/images/price.png"),
-        width: Get.width / 2,
-        fit: BoxFit.fill,
-        height: Get.height / 6.5),
-    Image(
-        image: AssetImage("assets/images/ride.png"),
-        width: Get.width / 2,
-        fit: BoxFit.fill,
-        height: Get.height / 6.5),
-    Image(
-        image: AssetImage("assets/images/AddCity.png"),
-        width: Get.width / 2,
-        fit: BoxFit.fill,
-        height: Get.height / 6.5),
-     Image(
-        image: AssetImage("assets/images/rate.png"),
-        width: Get.width / 2,
-        fit: BoxFit.fill,
-        height: Get.height / 6.5),
-    /*Image(
-        image: AssetImage("assets/images/FairCost.png"),
-        width: Get.width / 2,
-        fit: BoxFit.fill,
-        height: Get.height / 6.5),*/
-  ];
+
+  SharedPreferenceMie sp = SharedPreferenceMie();
+
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: MyColors.primary,
+      backgroundColor: MyColors.backgroundColor,
       appBar: AppBar(
+        toolbarHeight: 35,
         elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(25),
+              bottomRight: Radius.circular(25)
+          )
+        ),
         title: Text(
           "DashBoard",
           style: TextStyle(color: MyColors.white),
         ),
         centerTitle: true,
         automaticallyImplyLeading: false,
-        backgroundColor: MyColors.secondry,
+        backgroundColor: MyColors.gradiant,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: InkWell(
+                onTap: (){
+                  sp.clearData();
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                },
+                child: Icon(Icons.logout)),
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top: 10),
+          padding:  EdgeInsets.symmetric(horizontal: 30,vertical: 20),
           child: Column(
             children: [
-              Container(
-                height: 80,
-                  width: Get.width/2,
-                  child: Image.asset("assets/images/logo.png")),
-              GridView.builder(
+              InkWell(
+                onTap: (){
+                  Get.toNamed(RouteHelper.getBookingDetailScreenRoute());
+                },
+                child: Row(
+                  children: [
+                    Container(
+                      height: Get.height/6,
+                      width: Get.width/3,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topRight,
+                          end: Alignment.bottomLeft,
+                          colors: [MyColors.gradiant, MyColors.gradiant2],
+                           ),
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(60)
+                        )
+                      ),
+                      child: Center(
+                        child: Container(
+                          height: Get.height/9,
+                          width: Get.width/4,
+                          decoration: BoxDecoration(
+                            color: MyColors.white,
+                            borderRadius: BorderRadius.circular(60),
+                          ),
+                          child: Center(
+                            child: Image.asset("assets/images/booking_management.png",height: 80,),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: Get.width/2,
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 10),
+                          child: Center(
+                            child: Text("Booking Managements",style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(height: 10,),
+              InkWell(
+                onTap: (){
+                  Get.toNamed(RouteHelper.getViewUserScreenRoute());
+                },
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: Get.width/2,
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 10),
+                          child: Center(
+                            child: Text("Add Coins",style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: Get.height/6,
+                      width: Get.width/3,
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topRight,
+                            end: Alignment.bottomLeft,
+                            colors: [MyColors.gradiant, MyColors.gradiant2],
+                          ),
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(60)
+                          )
+                      ),
+                      child: Center(
+                        child: Container(
+                          height: Get.height/9,
+                          width: Get.width/4,
+                          decoration: BoxDecoration(
+                            color: MyColors.white,
+                            borderRadius: BorderRadius.circular(60),
+                          ),
+                          child: Center(
+                            child: Image.asset("assets/images/Coin.png",height: 80,),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 10,),
+              InkWell(
+                onTap: (){
+                  Get.toNamed(RouteHelper.getRateManagementScreenRoute());
+                },
+                child: Row(
+                  children: [
+                    Container(
+                      height: Get.height/6,
+                      width: Get.width/3,
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topRight,
+                            end: Alignment.bottomLeft,
+                            colors: [MyColors.gradiant, MyColors.gradiant2],
+                          ),
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(60)
+                          )
+                      ),
+                      child: Center(
+                        child: Container(
+                          height: Get.height/9,
+                          width: Get.width/4,
+                          decoration: BoxDecoration(
+                            color: MyColors.white,
+                            borderRadius: BorderRadius.circular(60),
+                          ),
+                          child: Center(
+                            child: Image.asset("assets/images/rate.png",height: 80,),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: Get.width/2,
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 10),
+                          child: Center(
+                            child: Text("Rate Management",style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(height: 10,),
+              InkWell(
+                onTap: (){
+                  Get.toNamed(RouteHelper.getRideAssignmentScreenRoute());
+                },
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: Get.width/2,
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 10),
+                          child: Center(
+                            child: Text("Ride Assignment ",style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: Get.height/6,
+                      width: Get.width/3,
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topRight,
+                            end: Alignment.bottomLeft,
+                            colors: [MyColors.gradiant, MyColors.gradiant2],
+                          ),
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(60)
+                          )
+                      ),
+                      child: Center(
+                        child: Container(
+                          height: Get.height/9,
+                          width: Get.width/4,
+                          decoration: BoxDecoration(
+                            color: MyColors.white,
+                            borderRadius: BorderRadius.circular(60),
+                          ),
+                          child: Center(
+                            child: Image.asset("assets/images/ride.png",height: 70,),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 10,),
+              InkWell(
+                onTap: (){
+                  Get.toNamed(RouteHelper.getAddCityScreenRoute());
+                },
+                child: Row(
+                  children: [
+                    Container(
+                      height: Get.height/6,
+                      width: Get.width/3,
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topRight,
+                            end: Alignment.bottomLeft,
+                            colors: [MyColors.gradiant, MyColors.gradiant2],
+                          ),
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(60)
+                          )
+                      ),
+                      child: Center(
+                        child: Container(
+                          height: Get.height/9,
+                          width: Get.width/4,
+                          decoration: BoxDecoration(
+                            color: MyColors.white,
+                            borderRadius: BorderRadius.circular(60),
+                          ),
+                          child: Center(
+                            child: Image.asset("assets/images/AddCity.png",height: 70,),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: Get.width/2,
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 10),
+                          child: Center(
+                            child: Text("Add City",style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(height: 10,),
+              InkWell(
+                onTap: (){
+                  Get.toNamed(RouteHelper.getSurgePriceScreenRoute());
+                },
+                child: Row(
+                  children: [
+
+                    SizedBox(
+                      width: Get.width/2,
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 10),
+                          child: Center(
+                            child: Text("Super Pricing",style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: Get.height/6,
+                      width: Get.width/3,
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topRight,
+                            end: Alignment.bottomLeft,
+                            colors: [MyColors.gradiant, MyColors.gradiant2],
+                          ),
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(60)
+                          )
+                      ),
+                      child: Center(
+                        child: Container(
+                          height: Get.height/9,
+                          width: Get.width/4,
+                          decoration: BoxDecoration(
+                            color: MyColors.white,
+                            borderRadius: BorderRadius.circular(60),
+                          ),
+                          child: Center(
+                            child: Image.asset("assets/images/superPricing.png",height: 80,),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              /*GridView.builder(
                 itemCount: list.length,
                 physics: AlwaysScrollableScrollPhysics(),
                 shrinkWrap: true,
@@ -102,7 +370,7 @@ class _HomePageState extends State<HomePage> {
                 itemBuilder: (context, index) {
                   var l = list[index];
                   return Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                     child: InkWell(
                       onTap: () {
                         if (index == 0) {
@@ -117,9 +385,9 @@ class _HomePageState extends State<HomePage> {
                           Get.toNamed(RouteHelper.getAddCityScreenRoute());
                         }else if(index == 5){
                           Get.toNamed(RouteHelper.getSurgePriceScreenRoute());
-                        }/*else if(index == 6){
+                        }*//*else if(index == 6){
                           Get.toNamed(RouteHelper.getFairCostScreenRoute());
-                        }*/
+                        }*//*
                       },
                       child: Container(
                         width: width,
@@ -128,7 +396,7 @@ class _HomePageState extends State<HomePage> {
                           boxShadow: [
                             BoxShadow(
                               color: Colors.grey,
-                              blurRadius: 15.0, // soften the shadow
+                              blurRadius: 12.0, // soften the shadow
                               spreadRadius: 2.0, //extend the shadow
                               offset: Offset(
                                 5.0, // Move to right 5  horizontally
@@ -171,7 +439,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   );
                 },
-              ),
+              ),*/
             ],
           ),
         ),

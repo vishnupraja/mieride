@@ -2,7 +2,7 @@
 
 class URLS {
 
-  static const String BASE_URL = "https://cisswork.com/Android/Mie_Ride/process.php?action=";
+  static const String BASE_URL = "https://mieride.ca/Mie_Ride/process.php?action=";
 
 
   static const String ADMIN_LOGIN = "admin_login";

@@ -43,183 +43,198 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
             itemBuilder: (context, index) {
               var list = controller.bookingList[index];
               return Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
+                shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 elevation: 4,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Booking id",
+                      Container(
+                        height: 30,
+                        color: MyColors.listGradiant,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Booking id",
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: MyColors.secondry,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Text("#"+list.bookingId,
                                   style: TextStyle(
-                                      fontSize: 10,
-                                      color: MyColors.grey,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Text(list.bookingId,
-                                    style: TextStyle(
-                                        fontSize: 10,
-                                        color: MyColors.secondry,
-                                        fontWeight: FontWeight.bold)),
-                              ],
-                            ),
-                          ),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Booking Date",
-                                  style: TextStyle(
-                                      fontSize: 10,
-                                      color: MyColors.grey,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  list.bookDate,
-                                  style: TextStyle(
-                                      fontSize: 10,
+                                      fontSize: 12,
                                       color: MyColors.secondry,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
+                                      fontWeight: FontWeight.bold)),
+                            ],
                           ),
-                          Expanded(
-                            child: Column(
-                              children: [
-                                const Text(
-                                  "Booking Status",
+                        ),
+                      ),
+                      SizedBox(height: 8,),
+                      Container(
+                        height: 30,
+                        color: MyColors.listGradiant,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Booking Date",
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: MyColors.secondry,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Text(list.bookDate,
                                   style: TextStyle(
-                                      fontSize: 10,
-                                      color: MyColors.grey,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Text(list.status,
-                                    style: TextStyle(
-                                        fontSize: 10,
-                                        color: MyColors.secondry,
-                                        fontWeight: FontWeight.bold)),
-                              ],
-                            ),
+                                      fontSize: 12,
+                                      color: MyColors.secondry,
+                                      fontWeight: FontWeight.bold)),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
-                      SizedBox(
-                        height: 20,
+                      SizedBox(height: 8,),
+                      Container(
+                        height: 30,
+                        color: MyColors.listGradiant,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Booking Status",
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: MyColors.secondry,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Text(list.status,
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      color: MyColors.secondry,
+                                      fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                        ),
                       ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                      SizedBox(height: 8,),
+                      Container(
+                        height: 30,
+                        color: MyColors.listGradiant,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                 "Customer Name",
                                 style: TextStyle(
-                                    fontSize: 10,
-                                    color: MyColors.grey,
+                                    fontSize: 12,
+                                    color: MyColors.secondry,
                                     fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(
-                                height: 5,
                               ),
                               Text(list.userName,
                                   style: TextStyle(
-                                      fontSize: 10,
+                                      fontSize: 12,
                                       color: MyColors.secondry,
                                       fontWeight: FontWeight.bold)),
                             ],
                           ),
-                          SizedBox(width: 27,),
-                          Column(
+                        ),
+                      ),
+                      SizedBox(height: 8,),
+                      Container(
+                        height: 30,
+                        color: MyColors.listGradiant,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Text(
+                              Text(
                                 "Amount",
                                 style: TextStyle(
-                                    fontSize: 10,
-                                    color: MyColors.grey,
+                                    fontSize: 12,
+                                    color: MyColors.secondry,
                                     fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(
-                                height: 5,
                               ),
                               Text(list.totalAmount,
                                   style: TextStyle(
-                                      fontSize: 10,
+                                      fontSize: 12,
                                       color: MyColors.secondry,
                                       fontWeight: FontWeight.bold)),
                             ],
                           ),
-                        ],
+                        ),
                       ),
                       SizedBox(
                         height: 10,
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text("Destination",
-                              style: TextStyle(
-                                  fontSize: 10,
-                                  color: MyColors.grey,
-                                  fontWeight: FontWeight.bold)),
-                          const SizedBox(
-                            height: 5,
+                      Card(
+                        color: Colors.greenAccent,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Destination",
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: MyColors.secondry,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                width: Get.width/2,
+                                child: Text( list.destination,
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: MyColors.secondry,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                            ],
                           ),
-                          Text(
-                            list.destination,
-                            style: TextStyle(
-                                fontSize: 10,
-                                color: MyColors.secondry,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
+                        ),
                       ),
                       SizedBox(
                         height: 10,
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text("Address",
-                              style: TextStyle(
-                                  fontSize: 10,
-                                  color: MyColors.grey,
-                                  fontWeight: FontWeight.bold)),
-                          const SizedBox(
-                            height: 5,
+                      Card(
+                        color: Colors.greenAccent,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Address",
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: MyColors.secondry,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                width: Get.width/2,
+                                child: Text( list.source,
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: MyColors.secondry,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                            ],
                           ),
-                          Text(
-                            list.source,
-                            style: TextStyle(
-                                fontSize: 10,
-                                color: MyColors.secondry,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
+                        ),
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
+                      SizedBox(height: 10,),
+
                     ],
                   ),
                 ),

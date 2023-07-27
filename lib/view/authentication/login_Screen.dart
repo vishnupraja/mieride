@@ -24,34 +24,34 @@ class _LoginScreenState extends State<LoginScreen> {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: MyColors.primary,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: MyColors.primary,
-      ),
+      backgroundColor: MyColors.backgroundColor,
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.symmetric(horizontal: 20,),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(height: 100,),
             Center(
               child: Container(
                 height: height / 4,
                 width: width / 2,
-                child: Image.asset('assets/images/logo.png'),
+                child: Image.asset('assets/images/logo.png',color: MyColors.gradiant),
               ),
             ),
+            Text("Login",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: MyColors.secondry),),
             custom_textfield(
-              labletext: "Mobile Number",
+              labletext: "",
               textEditingController: contactCtr,
               textInputType: TextInputType.number,
               icons: Icon(
                 Icons.email_outlined,
                 color: MyColors.secondry,
-              ),
+              ), hintText: 'Mobile Number',
             ),
             custom_textfield(
               ishide: visible,
-              labletext: 'Password',
+              labletext: '',
               textEditingController: passwordCtr,
               textInputType: TextInputType.text,
               icons: Icon(
@@ -72,19 +72,21 @@ class _LoginScreenState extends State<LoginScreen> {
                       : Icon(
                           Icons.visibility,
                           color: MyColors.secondry,
-                        )),
+                        )), hintText: 'Password',
             ),
             SizedBox(
               height: 50,
             ),
-           Obx(() => custom_button(
-               loading: controller.isLoading.value,
-               voidCallback: () {
-                 if(valid() == true){
-                   controller.Login(context, contactCtr.text, passwordCtr.text);
-                 }
-               },
-               text: "Login"), ),
+           Obx(() => Center(
+             child: custom_button(
+                 loading: controller.isLoading.value,
+                 voidCallback: () {
+                   if(valid() == true){
+                     controller.Login(context, contactCtr.text, passwordCtr.text);
+                   }
+                 },
+                 text: "Login"),
+           ), ),
           ],
         ),
       ),
