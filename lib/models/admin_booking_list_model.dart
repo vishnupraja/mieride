@@ -20,6 +20,7 @@ class AdminBookingListModel {
   String bookTime;
   String bookDate;
   String totalAmount;
+  String categoryName;
 
   AdminBookingListModel({
     required this.bookingId,
@@ -32,6 +33,7 @@ class AdminBookingListModel {
     required this.bookTime,
     required this.bookDate,
     required this.totalAmount,
+    required this.categoryName,
   });
 
   factory AdminBookingListModel.fromJson(Map<String, dynamic> json) => AdminBookingListModel(
@@ -45,6 +47,7 @@ class AdminBookingListModel {
     bookTime: json["book_time"],
     bookDate: json["book_date"],
     totalAmount: json["total_amount"],
+    categoryName: json["category_name"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -58,5 +61,6 @@ class AdminBookingListModel {
     "book_time": bookTime,
     "book_date": bookDate,
     "total_amount": totalAmount,
+    "category_name": categoryName,
   };
 }
