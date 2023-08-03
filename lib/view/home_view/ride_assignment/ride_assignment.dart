@@ -226,6 +226,31 @@ class _RideAssignmentState extends State<RideAssignment> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
+                                  "DropOff Time",
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      color: MyColors.secondry,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(list.bookTime,
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: MyColors.secondry,
+                                        fontWeight: FontWeight.bold)),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 8,),
+                        Container(
+                          height: 30,
+                          color: MyColors.listGradiant,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
                                   "Amount",
                                   style: TextStyle(
                                       fontSize: 12,
