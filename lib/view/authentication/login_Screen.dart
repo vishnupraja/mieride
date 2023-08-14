@@ -5,6 +5,8 @@ import 'package:mie_ride/utils/SnackBar.dart';
 import 'package:mie_ride/utils/colors.dart';
 import 'package:mie_ride/utils/text_field.dart';
 
+import '../../rout_helper/rout_helper.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -34,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(height: 100,),
             Center(
               child: Container(
-                height: height / 4,
+                height: height /4,
                 width: width / 2,
                 child: Image.asset('assets/images/logo.png',color: MyColors.gradiant),
               ),
@@ -87,6 +89,16 @@ class _LoginScreenState extends State<LoginScreen> {
                  },
                  text: "Login"),
            ), ),
+            SizedBox(height: 20,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Already have an account"),
+                TextButton(onPressed: (){
+                  Get.toNamed(RouteHelper.getSignUpScreenRoute());
+                }, child: Text("SignUp",style: TextStyle(color: Colors.red),))
+              ],
+            )
           ],
         ),
       ),

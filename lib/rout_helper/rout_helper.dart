@@ -3,6 +3,7 @@ import 'package:mie_ride/view/authentication/login_Screen.dart';
 import 'package:mie_ride/view/authentication/splace_screen.dart';
 import 'package:mie_ride/view/home_view/add_city/add_city.dart';
 import 'package:mie_ride/view/home_view/surge_pricing/surge_pricing.dart';
+import '../view/authentication/signup_screen.dart';
 import '../view/home_view/add_city/add_city_field.dart';
 import '../view/home_view/add_coin/view_user.dart';
 import '../view/home_view/booking/cancel_order.dart';
@@ -39,6 +40,7 @@ class RouteHelper{
   static const String addCity = '/addCity';
   static const String addCityField = '/addCityField';
   static const String surgePriceAdd = '/surgePriceAdd';
+  static const String signup = '/signup';
 
 
 
@@ -61,6 +63,7 @@ class RouteHelper{
   static getAddCityScreenRoute()=>addCity;
   static getAddCityFieldScreenRoute()=>addCityField;
   static getSurgePriceAddScreenRoute()=>surgePriceAdd;
+  static getSignUpScreenRoute()=>signup;
 
 
 
@@ -85,6 +88,7 @@ class RouteHelper{
     GetPage(name: addCity, page: ()=> const AddCity()),
     GetPage(name: addCityField, page: ()=> const AddCityField()),
     GetPage(name: surgePriceAdd, page: ()=> const SurgePriceAdd()),
+    GetPage(name: signup, page: ()=> const SignUpScreen()),
 
 
   ];
