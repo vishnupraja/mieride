@@ -46,7 +46,7 @@ class _AddCityFieldState extends State<AddCityField> {
                     custom_button(
                         loading: controller.isLoading.value,
                         voidCallback: () {
-                          getLatLong();
+                         /* getLatLong();*/
                         },
                         text: "Submit"),
                   ],
@@ -59,7 +59,7 @@ class _AddCityFieldState extends State<AddCityField> {
     );
   }
 
-  Future<void> getLatLong() async {
+/*  Future<void> getLatLong() async {
     List<Location> locations =
         await locationFromAddress(cityCtr.text.toString());
 
@@ -68,5 +68,5 @@ class _AddCityFieldState extends State<AddCityField> {
     print('input address longitude---->${controller.longitude.value}');
     print('input address latitude---->${controller.latitude.value}');
     controller.adminAddCity(context, cityCtr.text);
-  }
+  }*/
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_google_places_hoc081098/flutter_google_places_hoc081098.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_webservice/places.dart';
 import 'package:mie_ride/controller/city_controller.dart';
-import 'package:mie_ride/rout_helper/rout_helper.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/text_field.dart';
 
@@ -23,6 +24,11 @@ class _AddCityState extends State<AddCity> {
     controller.adminCityFetch();
     super.initState();
   }
+
+  double? latitude;
+  double? long;
+
+  String googleAPiKey = "AIzaSyCUuPa5wAQ5ChQ3UUgq48yS8rafI6iJRSc";
 
   @override
   Widget build(BuildContext context) {
@@ -82,11 +88,17 @@ class _AddCityState extends State<AddCity> {
                                       color: MyColors.secondry,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text(list.cityName,
-                                    style: TextStyle(
-                                        fontSize: 12,
-                                        color: MyColors.secondry,
-                                        fontWeight: FontWeight.bold)),
+                                Container(
+                                  width: Get.width/3,
+                                  child: Text(list.cityName,
+                                      maxLines: 1,
+                                      softWrap: false,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                          fontSize: 12,
+                                          color: MyColors.secondry,
+                                          fontWeight: FontWeight.bold)),
+                                ),
                               ],
                             ),
                           ),
@@ -141,12 +153,23 @@ class _AddCityState extends State<AddCity> {
   Future<String?> _showTextInputDialog(
       BuildContext context) async {
     return showDialog(
+      barrierDismissible: false,
         context: context,
         builder: (context) {
           return AlertDialog(
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Align(
+                  alignment: Alignment.topRight,
+                  child: InkWell(
+                    onTap: (){
+                      cityCtr.text = "";
+                      controller.location.value = "";
+                      Get.back();
+                    },
+                      child: Icon(Icons.clear)),
+                ),
                 Image.asset('assets/images/cityImage.png'),
                 SizedBox(
                   height: 10,
@@ -154,31 +177,61 @@ class _AddCityState extends State<AddCity> {
                 Text("Enter City Name",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 12),)
               ],
             ),
-            content: Container(
-              height: 50,
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey,
-                    blurRadius: 8.0, // soften the shadow
-                    spreadRadius: 2.0, //extend the shadow
-                    offset: Offset(
-                      0.0, // Move to right 5  horizontally
-                      0.0, // Move to bottom 5 Vertically
-                    ),
-                  )
-                ],
-              ),
-              child: TextField(
-                keyboardType: TextInputType.text,
-                controller: cityCtr,
-                decoration: const InputDecoration(
-                    filled: true,
-                    fillColor: MyColors.textFieldBack,
-                    border: InputBorder.none
+            content: Obx((){
+              cityCtr.text = controller.location.value;
+              return Container(
+                height: 50,
+                decoration: BoxDecoration(
+                    border: Border.all(
+                        color: Colors.black
+                    )
                 ),
-              ),
-            ),
+                child: TextFormField(
+                  controller: cityCtr,
+                  keyboardType: TextInputType.text,
+                  onTap: () async {
+                    var place = await PlacesAutocomplete.show(
+                        context: context,
+                        apiKey: googleAPiKey,
+                        mode: Mode.overlay,
+                        types: [],
+                        strictbounds: false,
+                        components: [],
+                        onError: (err) {
+                          print(err);
+                        });
+                    if (place != null) {
+                      controller.location.value = place.description.toString();
+                      print("location-------------" + controller.location.value);
+                      setState(() {
+
+                      });
+                      final plist = GoogleMapsPlaces(
+                        apiKey: googleAPiKey,
+                      );
+                      String placeId = place.placeId ?? "0";
+                      final detail = await plist.getDetailsByPlaceId(placeId);
+                      final geometry = detail.result.geometry!;
+                      latitude = geometry.location.lat;
+                      long = geometry.location.lng;
+                      print("lat----->:-$latitude");
+                      print("lat----->:-$long");
+                    }
+                  },
+                  decoration: InputDecoration(
+                      border: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      hintText: "Select Your Location",
+                      prefixIcon: Icon(
+                        Icons.search,
+                        color: MyColors.hintColor,
+                      ),
+                      hintStyle: const TextStyle(
+                          color: Colors.grey, fontSize: 12)),
+                ),
+              );
+            }),
             actions: <Widget>[
               Padding(
                   padding: const EdgeInsets.only(right: 15),
@@ -186,7 +239,9 @@ class _AddCityState extends State<AddCity> {
                         () => custom_button(
                             loading: controller.isLoading.value,
                         voidCallback: () {
-                          getLatLong();
+                          controller.adminAddCity(context, cityCtr.text,latitude.toString(),long.toString());
+                       cityCtr.text = "";
+                       controller.location.value = "";
                         },
                         text: "Submit"),
                   ))
@@ -194,7 +249,7 @@ class _AddCityState extends State<AddCity> {
           );
         });
   }
-  Future<void> getLatLong() async {
+ /* Future<void> getLatLong() async {
     List<Location> locations =
     await locationFromAddress(cityCtr.text.toString());
 
@@ -203,6 +258,6 @@ class _AddCityState extends State<AddCity> {
     print('input address longitude---->${controller.longitude.value}');
     print('input address latitude---->${controller.latitude.value}');
     controller.adminAddCity(context, cityCtr.text);
-  }
+  }*/
 
 }

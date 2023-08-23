@@ -12,6 +12,7 @@ class CityController extends GetxController{
 
   RxString longitude = ''.obs;
   RxString latitude = ''.obs;
+  RxString location = ''.obs;
 
   var isLoading = false.obs;
   var isLoadings = false.obs;
@@ -20,12 +21,12 @@ class CityController extends GetxController{
 
   ApiService apiService = ApiService();
 
-  Future<void> adminAddCity(BuildContext context,String cityName,) async {
+  Future<void> adminAddCity(BuildContext context,String cityName,String lat, String long) async {
     isLoading.value = true;
     Map<String,dynamic> addCityParameter = {
       'city_name'  : cityName,
-      'latitude'  : latitude.value,
-      'longitude' : longitude.value,
+      'latitude'  : lat,
+      'longitude' : long,
     };
     log("addCity parameter ---->:$addCityParameter");
 
