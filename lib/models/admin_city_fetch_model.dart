@@ -1,4 +1,3 @@
-
 // To parse this JSON data, do
 //
 //     final adminFetchCityModel = adminFetchCityModelFromJson(jsonString);
@@ -12,6 +11,7 @@ String adminFetchCityModelToJson(List<AdminFetchCityModel> data) => json.encode(
 class AdminFetchCityModel {
   String cityId;
   String cityName;
+  String cityAddress;
   String latitude;
   String longitude;
   String status;
@@ -19,6 +19,7 @@ class AdminFetchCityModel {
   AdminFetchCityModel({
     required this.cityId,
     required this.cityName,
+    required this.cityAddress,
     required this.latitude,
     required this.longitude,
     required this.status,
@@ -27,6 +28,7 @@ class AdminFetchCityModel {
   factory AdminFetchCityModel.fromJson(Map<String, dynamic> json) => AdminFetchCityModel(
     cityId: json["city_id"],
     cityName: json["city_name"],
+    cityAddress: json["city_address"],
     latitude: json["latitude"],
     longitude: json["longitude"],
     status: json["status"],
@@ -35,6 +37,7 @@ class AdminFetchCityModel {
   Map<String, dynamic> toJson() => {
     "city_id": cityId,
     "city_name": cityName,
+    "city_address": cityAddress,
     "latitude": latitude,
     "longitude": longitude,
     "status": status,

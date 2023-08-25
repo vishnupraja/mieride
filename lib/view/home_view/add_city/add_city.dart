@@ -79,17 +79,18 @@ class _AddCityState extends State<AddCity> {
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  "City Name",
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color: MyColors.secondry,
-                                      fontWeight: FontWeight.bold),
+                                Expanded(
+                                  child: Text(
+                                    "City Name",
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: MyColors.secondry,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ),
-                                Container(
-                                  width: Get.width/3,
+                                SizedBox(width: 100,),
+                                Expanded(
                                   child: Text(list.cityName,
                                       maxLines: 1,
                                       softWrap: false,
@@ -112,18 +113,56 @@ class _AddCityState extends State<AddCity> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  "Status",
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color: MyColors.secondry,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(list.status,
+                                Expanded(
+                                  child: Text(
+                                    "Status",
                                     style: TextStyle(
                                         fontSize: 12,
                                         color: MyColors.secondry,
-                                        fontWeight: FontWeight.bold)),
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                SizedBox(width: 100,),
+                                Expanded(
+                                  child: Text(list.status,
+                                      maxLines: 1,
+                                      softWrap: false,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                          fontSize: 12,
+                                          color: MyColors.secondry,
+                                          fontWeight: FontWeight.bold)),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 8,),
+                        Container(
+                          height: 30,
+                          color: MyColors.listGradiant,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    "Address",
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: MyColors.secondry,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                SizedBox(width: 100,),
+                                Expanded(
+                                  child: Text(list.cityAddress,
+                                      style: TextStyle(
+                                          fontSize: 12,
+                                          color: MyColors.secondry,
+                                          fontWeight: FontWeight.bold)),
+                                ),
                               ],
                             ),
                           ),
