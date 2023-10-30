@@ -31,12 +31,8 @@ class _SplashScreenState extends State<SplashScreen> {
           height: Get.height,
           width: Get.width,
           decoration: BoxDecoration(
-            color: MyColors.backgroundColor
-          ),
-          child: Center(
-            child: Image.asset("assets/images/logo.png",color: MyColors.gradiant,),
-          ),
-        ));
+           image: DecorationImage(image: AssetImage("assets/images/img_1.png"),fit: BoxFit.cover)
+        )));
   }
   
   void getData()async{

@@ -37,9 +37,9 @@ class _LoginScreenState extends State<SignUpScreen> {
             SizedBox(height: 50,),
             Center(
               child: Container(
-                height: height /5,
+                height: height /8,
                 width: width / 2,
-                child: Image.asset('assets/images/logo.png',color: MyColors.gradiant),
+                child: Image.asset('assets/images/logo.png',),
               ),
             ),
             Text("SignUp",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: MyColors.secondry),),
