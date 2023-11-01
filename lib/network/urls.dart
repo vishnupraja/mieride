@@ -2,7 +2,7 @@
 
 class URLS {
 
-  static const String BASE_URL = "https://mieride.ca/Mie_Ride/process.php?action=";
+  static const String BASE_URL = "https://portal.mieride.ca/API/process.php?action=";
 
 
   static const String ADMIN_LOGIN = "admin_login";
@@ -19,6 +19,7 @@ class URLS {
   static const String ADMIN_FETCH_CITY_PRICE = "fetch_admin_rate_alldata";
   static const String ADMIN_SURGE_PRICING = "fetch_surge_pricing";
   static const String ADMIN_SURGE_PRICING_ADD = "add_admin_surge_cost";
+  static const String AGENCY_LIST = "fetch_agency_list";
 
 
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mie_ride/controller/booking_controller.dart';
 import 'package:get/get.dart';
+import 'package:mie_ride/utils/SnackBar.dart';
 import 'package:mie_ride/utils/text_field.dart';
 import '../../../utils/colors.dart';
 
@@ -14,11 +15,13 @@ class PlaceOrder extends StatefulWidget {
 class _PlaceOrderState extends State<PlaceOrder> {
   
   BookingController controller = Get.put(BookingController());
+  var agencyvalue = null;
   
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       controller.bookingManagement("Placed");
+      controller.agencyList();
     });
     super.initState();
   }
@@ -278,7 +281,63 @@ class _PlaceOrderState extends State<PlaceOrder> {
                         ),
                       ),
                     ),
-                  SizedBox(height: 10,),
+                    SizedBox(height: 10,),
+                    Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              8,
+                            ),
+                            border: Border.all(color: Colors.black54),
+                            color: Colors.white),
+                        child: Obx(
+                              () => controller.agencyLoading.value
+                              ? Center(
+                            child: myIndicator(),
+                          )
+                              : DropdownButtonHideUnderline(
+                            child: DropdownButton<String>(
+                              dropdownColor: MyColors.primary,
+                              hint: Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Text(
+                                  'select agency',
+                                  style: TextStyle(
+                                      color: Colors.black54, fontSize: 12),
+                                ),
+                              ),
+                              value: agencyvalue,
+                              icon: const Icon(
+                                Icons.keyboard_arrow_down,
+                                size: 25,
+                              ),
+                              isExpanded: true,
+                              items: controller.agencyLists.map(
+                                    (value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value.agencyId,
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text(
+                                        value.agencyName,
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ).toList(),
+                              onChanged: (value) {
+                                setState(
+                                      () {
+                                        agencyvalue = value;
+                                    print("companyValue===>$agencyvalue");
+                                  },
+                                );
+                              },
+                            ),
+                          ),
+                        )),
+
+                  SizedBox(height: 20,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -298,9 +357,14 @@ class _PlaceOrderState extends State<PlaceOrder> {
                                     borderRadius: BorderRadius.circular(10)),
                               ),
                               onPressed: () {
-                                controller.confirmBooking(list.bookingId, () {
-                                  controller.currentIndex.value = 1;
-                                });
+                                if(agencyvalue == null){
+                                  showCustomSnackBar("please select agency name", context);
+                                }else{
+                                  controller.confirmBooking(list.bookingId,agencyvalue.toString(), () {
+                                    controller.currentIndex.value = 1;
+                                  });
+                                }
+
 
                               },
                               child: Text(

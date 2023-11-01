@@ -8,6 +8,8 @@ import 'package:mie_ride/network/api_service.dart';
 import 'package:mie_ride/network/urls.dart';
 import 'package:mie_ride/utils/SnackBar.dart';
 
+import '../models/agency_model.dart';
+
 class BookingController extends GetxController{
 
   var isLoading = false.obs;
@@ -15,6 +17,7 @@ class BookingController extends GetxController{
   var cancelLoading = false.obs;
   var driverLoading = false.obs;
   var fetchDriverLoading = false.obs;
+  var agencyLoading = false.obs;
 
 
   var currentIndex = 0.obs;
@@ -23,6 +26,7 @@ class BookingController extends GetxController{
 
   var bookingList = <AdminBookingListModel>[].obs;
   var driverList = <AdminFetchDriverModel>[].obs;
+  var agencyLists = <AgencyModel>[].obs;
 
   void bookingManagement(String status)async{
     isLoading.value = true;
@@ -48,10 +52,11 @@ class BookingController extends GetxController{
 
   }
 
-  void confirmBooking(String bookingId,VoidCallback callback)async{
+  void confirmBooking(String bookingId,String agencyId,VoidCallback callback)async{
     confirmLoading.value = true;
     Map<String,dynamic> parameter = {
       'booking_id'  : bookingId,
+      'agency_id' : agencyId
     };
     log('parameter ----->:$parameter');
 
@@ -110,11 +115,12 @@ class BookingController extends GetxController{
 
   }
 
-  void allotDriver(BuildContext context,String bookingId,String driverId,VoidCallback callback)async{
+  void allotDriver(BuildContext context,String bookingId,String driverId,String bonus_amount,VoidCallback callback)async{
     driverLoading.value = true;
     Map<String, dynamic> driveParameter ={
       "booking_id"   : bookingId,
       "driver_id"    : driverId,
+      "bonus_amount" : bonus_amount
     };
     log("driver allot parameter ------->:$driveParameter");
 
@@ -148,6 +154,18 @@ class BookingController extends GetxController{
     }catch(e){
       fetchDriverLoading.value = false;
       log("Exception -----",error: e.toString());
+    }
+  }
+
+  void agencyList()async{
+    agencyLoading.value = true;
+    try{
+      final response = await apiService.getData(URLS.AGENCY_LIST);
+      log("fetch agency response ------>:${response.data}");
+     agencyLists.value = agencyModelFromJson(response.data);
+      agencyLoading.value = false;
+    }catch(e){
+      agencyLoading.value = false;
     }
   }
 

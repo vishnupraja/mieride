@@ -221,7 +221,7 @@ class _DriverState extends State<Driver> {
             voidCallback: () {
                print(Get.arguments["id"]);
                print(Id);
-               controller.allotDriver(context, Get.arguments["id"], Id, () {
+               controller.allotDriver(context, Get.arguments["id"], Id,Get.arguments["bonus"], () {
                  Get.offNamed(RouteHelper.getHomePageScreenRoute());
                });
 
