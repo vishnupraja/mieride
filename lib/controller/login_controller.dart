@@ -34,9 +34,12 @@ class LoginController extends GetxController{
       var jsonString = jsonDecode(response.data);
       log("login response -----:>$jsonString");
       var result = jsonString['result'];
+      var id = jsonString['id'];
       if(result == "success"){
         isLoading.value = false;
+        log("id ----$id");
         showCustomSnackBar("Login Successfully", context);
+        sp.setStringValue(sp.USER_ID, id);
         sp.setBoolValue(sp.LOGIN_KEY, true);
         Get.offNamed(RouteHelper.getHomePageScreenRoute());
       }else{
@@ -52,11 +55,13 @@ class LoginController extends GetxController{
   }
 
   void deleteAccount(BuildContext context)async{
+    log(await sp.getStringValue(sp.USER_ID).toString());
     deleteLoading.value = true;
     Map<String, dynamic> map = {
       'admin_id' : await sp.getStringValue(sp.USER_ID),
     };
 
+    log("is-----$map");
     try{
 
       final response = await apiService.postData(URLS.DELETE_ACCOUNT, map);
@@ -66,6 +71,7 @@ class LoginController extends GetxController{
       if(jsonString['result'] == "success"){
         deleteLoading.value = false;
         showCustomSnackBar("Account deleted", context);
+        Get.offAllNamed(RouteHelper.getLoginScreenRoute());
       }else{
         deleteLoading.value = false;
         showCustomSnackBar("something went wrong", context);
