@@ -21,6 +21,8 @@ class AdminBookingListModel {
   String bookDate;
   String totalAmount;
   String categoryName;
+  String driverEarning;
+  String adminCommission;
 
   AdminBookingListModel({
     required this.bookingId,
@@ -34,6 +36,8 @@ class AdminBookingListModel {
     required this.bookDate,
     required this.totalAmount,
     required this.categoryName,
+    required this.driverEarning,
+    required this.adminCommission,
   });
 
   factory AdminBookingListModel.fromJson(Map<String, dynamic> json) => AdminBookingListModel(
@@ -48,6 +52,8 @@ class AdminBookingListModel {
     bookDate: json["book_date"],
     totalAmount: json["total_amount"],
     categoryName: json["category_name"],
+    driverEarning: json["driver_earning"],
+    adminCommission: json["admin_commission"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -62,5 +68,8 @@ class AdminBookingListModel {
     "book_date": bookDate,
     "total_amount": totalAmount,
     "category_name": categoryName,
+    "driver_earning": driverEarning,
+    "admin_commission": adminCommission,
+
   };
 }

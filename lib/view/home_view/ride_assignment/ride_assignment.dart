@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mie_ride/controller/booking_controller.dart';
 import 'package:mie_ride/rout_helper/rout_helper.dart';
+import 'package:mie_ride/utils/SnackBar.dart';
 import 'package:mie_ride/utils/colors.dart';
 import 'package:mie_ride/utils/text_field.dart';
 
@@ -17,6 +18,7 @@ class _RideAssignmentState extends State<RideAssignment> {
   TextEditingController bonusAmount = TextEditingController();
 
   var idList = [];
+  var driverPrice = [];
 
   String allId = "";
   bool selected = false;
@@ -80,9 +82,12 @@ class _RideAssignmentState extends State<RideAssignment> {
                     return InkWell(
                       onTap: () {
                         toggleIndex(index);
-                        if (idList.contains(list.bookingId)) {
+                        if (idList.contains(list.bookingId) && driverPrice.contains(list.driverEarning)) {
+                          driverPrice.remove(list.driverEarning);
                           idList.remove(list.bookingId);
                         } else {
+                          driverPrice.add(list.driverEarning);
+                          driverPrice.join(",");
                           idList.add(list.bookingId);
                           idList.join(",");
 
@@ -351,7 +356,7 @@ class _RideAssignmentState extends State<RideAssignment> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: custom_textfield(
                   textEditingController: bonusAmount,
-                    textInputType: TextInputType.number,
+                    textInputType:TextInputType.numberWithOptions(signed: true, decimal: true),
                     labletext: "Enter Bonus Amount",
                     hintText: "Enter Bonus Amount"),
               )
@@ -363,14 +368,26 @@ class _RideAssignmentState extends State<RideAssignment> {
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
         child: custom_button(
           voidCallback: () {
+            var b = 0.0, sum = 0.0;
+            for(var i = 0; i < driverPrice.length; i++){
+              var a = double.parse(driverPrice[i]);
+               sum = a+b;
+              b = sum;
+            }
+            print("sum-------${sum}");
             allId = idList.join(",");
             print(allId);
-            print(bonusAmount.text);
-            Get.toNamed(RouteHelper.getDriverScreenRoute(),
-                arguments: {
-              "id": allId,
-                  "bonus" : bonusAmount.text,
-            });
+
+            if(allId == ""){
+              showCustomSnackBar("please select ride", context);
+            }else{
+              Get.toNamed(RouteHelper.getDriverScreenRoute(),
+                  arguments: {
+                    "id": allId,
+                    "bonus" : bonusAmount.text,
+                    "totalPrice" : sum
+                  });
+            }
           },
           text: 'Allot Driver',
         ),

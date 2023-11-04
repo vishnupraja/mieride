@@ -20,6 +20,7 @@ class URLS {
   static const String ADMIN_SURGE_PRICING = "fetch_surge_pricing";
   static const String ADMIN_SURGE_PRICING_ADD = "add_admin_surge_cost";
   static const String AGENCY_LIST = "fetch_agency_list";
+  static const String DELETE_ACCOUNT = "delete_admin_account";
 
 
 }

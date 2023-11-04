@@ -15,6 +15,7 @@ import '../rout_helper/rout_helper.dart';
 class LoginController extends GetxController{
 
   var isLoading = false.obs;
+  var deleteLoading = false.obs;
 
   ApiService apiService = ApiService();
   SharedPreferenceMie sp = SharedPreferenceMie();
@@ -39,13 +40,43 @@ class LoginController extends GetxController{
         sp.setBoolValue(sp.LOGIN_KEY, true);
         Get.offNamed(RouteHelper.getHomePageScreenRoute());
       }else{
+        showCustomSnackBar("something went wrong", context);
         isLoading.value = false;
       }
     }catch(e){
       isLoading.value = false;
+      showCustomSnackBar("something went wrong", context);
       log("Exception --->: ",error: e.toString());
     }
 
   }
+
+  void deleteAccount(BuildContext context)async{
+    deleteLoading.value = true;
+    Map<String, dynamic> map = {
+      'admin_id' : await sp.getStringValue(sp.USER_ID),
+    };
+
+    try{
+
+      final response = await apiService.postData(URLS.DELETE_ACCOUNT, map);
+
+      var jsonString  = jsonDecode(response.data);
+
+      if(jsonString['result'] == "success"){
+        deleteLoading.value = false;
+        showCustomSnackBar("Account deleted", context);
+      }else{
+        deleteLoading.value = false;
+        showCustomSnackBar("something went wrong", context);
+      }
+
+    }catch(e){
+      deleteLoading.value = false;
+      showCustomSnackBar("something went wrong", context);
+    }
+
+  }
+
 
 }

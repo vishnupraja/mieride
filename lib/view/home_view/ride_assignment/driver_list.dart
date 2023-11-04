@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mie_ride/controller/booking_controller.dart';
 import 'package:mie_ride/rout_helper/rout_helper.dart';
+import 'package:mie_ride/utils/SnackBar.dart';
 
 import '../../../utils/colors.dart';
 import '../../../utils/text_field.dart';
@@ -51,166 +52,191 @@ class _DriverState extends State<Driver> {
         }else if(controller.driverList.length == 0){
           return Center(child: Text("No Driver Available"),);
         }else{
-          return ListView.builder(
-            itemCount: controller.driverList.length,
-            scrollDirection: Axis.vertical,
-            itemBuilder: (context, index) {
-              var list  = controller.driverList[index];
-              return InkWell(
-                onTap: (){
-                  setState(() {
-                    selectedIndex = index;
-                    Id = list.driverId;
-                  });
-                },
-                child: Card(
-                  shape:
-                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                  elevation: 4,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 30,
-                          color: MyColors.listGradiant,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Driver Name",
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color: MyColors.secondry,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(list.driverName,
-                                    style: TextStyle(
-                                        fontSize: 12,
-                                        color: MyColors.secondry,
-                                        fontWeight: FontWeight.bold)),
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 8,),
-                        Container(
-                          height: 30,
-                          color: MyColors.listGradiant,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Email",
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color: MyColors.secondry,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(list.email,
-                                    style: TextStyle(
-                                        fontSize: 12,
-                                        color: MyColors.secondry,
-                                        fontWeight: FontWeight.bold)),
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 8,),
-                        Container(
-                          height: 30,
-                          color: MyColors.listGradiant,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Status",
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color: MyColors.secondry,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(list.status,
-                                    style: TextStyle(
-                                        fontSize: 12,
-                                        color: MyColors.secondry,
-                                        fontWeight: FontWeight.bold)),
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 8,),
-                        Container(
-                          height: 30,
-                          color: MyColors.listGradiant,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Contact",
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color: MyColors.secondry,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(list.phone,
-                                    style: TextStyle(
-                                        fontSize: 12,
-                                        color: MyColors.secondry,
-                                        fontWeight: FontWeight.bold)),
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Card(
-                          color: Colors.greenAccent,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Address",
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color: MyColors.secondry,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(
-                                  width: Get.width/2,
-                                  child: Text( list.address,
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          color: MyColors.secondry,
-                                          fontWeight: FontWeight.bold)),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-
-                        Align(
-                          alignment: Alignment.bottomRight,
-                          child:  selectedIndex == index?Icon(Icons.check_circle,color: MyColors.green,):null,
-                        )
-                      ],
-                    ),
+          return Column(
+            children: [
+              Container(
+                height: 100,
+                width: Get.width,
+                decoration: BoxDecoration(
+                  color: MyColors.white
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 20,),
+                      Text("Total Price : ${Get.arguments["totalPrice"]}"),
+                      SizedBox(height: 10,),
+                      Text("bonus Price : ${Get.arguments["bonus"]}"),
+                    ],
                   ),
                 ),
-              );
-            },
+              ),
+              Flexible(
+                child: ListView.builder(
+                  itemCount: controller.driverList.length,
+                  scrollDirection: Axis.vertical,
+                  itemBuilder: (context, index) {
+                    var list  = controller.driverList[index];
+                    return InkWell(
+                      onTap: (){
+                        setState(() {
+                          selectedIndex = index;
+                          Id = list.driverId;
+                        });
+                      },
+                      child: Card(
+                        shape:
+                        RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                        elevation: 4,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: 30,
+                                color: MyColors.listGradiant,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "Driver Name",
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: MyColors.secondry,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(list.driverName,
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              color: MyColors.secondry,
+                                              fontWeight: FontWeight.bold)),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 8,),
+                              Container(
+                                height: 30,
+                                color: MyColors.listGradiant,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "Email",
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: MyColors.secondry,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(list.email,
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              color: MyColors.secondry,
+                                              fontWeight: FontWeight.bold)),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 8,),
+                              Container(
+                                height: 30,
+                                color: MyColors.listGradiant,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "Status",
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: MyColors.secondry,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(list.status,
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              color: MyColors.secondry,
+                                              fontWeight: FontWeight.bold)),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 8,),
+                              Container(
+                                height: 30,
+                                color: MyColors.listGradiant,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "Contact",
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: MyColors.secondry,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(list.phone,
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              color: MyColors.secondry,
+                                              fontWeight: FontWeight.bold)),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Card(
+                                color: Colors.greenAccent,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "Address",
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: MyColors.secondry,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(
+                                        width: Get.width/2,
+                                        child: Text( list.address,
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                color: MyColors.secondry,
+                                                fontWeight: FontWeight.bold)),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+
+                              Align(
+                                alignment: Alignment.bottomRight,
+                                child:  selectedIndex == index?Icon(Icons.check_circle,color: MyColors.green,):null,
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
           );
         }
       }),
@@ -221,9 +247,14 @@ class _DriverState extends State<Driver> {
             voidCallback: () {
                print(Get.arguments["id"]);
                print(Id);
-               controller.allotDriver(context, Get.arguments["id"], Id,Get.arguments["bonus"], () {
-                 Get.offNamed(RouteHelper.getHomePageScreenRoute());
-               });
+               if(Id == ""){
+                 showCustomSnackBar("please select driver", context);
+               }else{
+                 controller.allotDriver(context, Get.arguments["id"], Id,Get.arguments["bonus"], () {
+                   Get.offNamed(RouteHelper.getHomePageScreenRoute());
+                 });
+               }
+
 
           }, text: 'Allot Driver',),)
         ),
