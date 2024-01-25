@@ -4,6 +4,7 @@ import 'package:mie_ride/rout_helper/rout_helper.dart';
 import 'package:mie_ride/utils/colors.dart';
 
 import '../../../controller/surge_price_controller.dart';
+import '../../../network/urls.dart';
 import '../../../utils/SnackBar.dart';
 import '../../../utils/text_field.dart';
 
@@ -131,7 +132,7 @@ class _SurgePriceState extends State<SurgePrice> {
                                       color: MyColors.secondry,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text(list.price,
+                                Text(currency+" "+list.price,
                                     style: TextStyle(
                                         fontSize: 12,
                                         color: MyColors.secondry,

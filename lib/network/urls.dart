@@ -1,4 +1,5 @@
 
+ const String currency = "CAD";
 
 class URLS {
 

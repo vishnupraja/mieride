@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mie_ride/controller/booking_controller.dart';
 import 'package:mie_ride/utils/text_field.dart';
+import '../../../network/urls.dart';
 import '../../../utils/colors.dart';
 
 class CancelOrder extends StatefulWidget {
@@ -191,7 +192,7 @@ class _CancelOrderState extends State<CancelOrder> {
                                     color: MyColors.secondry,
                                     fontWeight: FontWeight.bold),
                               ),
-                              Text(list.totalAmount,
+                              Text(currency+" "+list.totalAmount,
                                   style: TextStyle(
                                       fontSize: 12,
                                       color: MyColors.secondry,

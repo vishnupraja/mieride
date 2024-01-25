@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mie_ride/controller/booking_controller.dart';
+import 'package:mie_ride/network/urls.dart';
 import 'package:mie_ride/rout_helper/rout_helper.dart';
 import 'package:mie_ride/utils/SnackBar.dart';
 import 'package:mie_ride/utils/colors.dart';
@@ -267,7 +268,7 @@ class _RideAssignmentState extends State<RideAssignment> {
                                             color: MyColors.secondry,
                                             fontWeight: FontWeight.bold),
                                       ),
-                                      Text(list.totalAmount,
+                                      Text(currency+" "+list.totalAmount,
                                           style: TextStyle(
                                               fontSize: 12,
                                               color: MyColors.secondry,

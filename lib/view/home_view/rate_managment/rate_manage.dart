@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mie_ride/network/urls.dart';
 import 'package:mie_ride/utils/colors.dart';
 import '../../../controller/ride_management_controller.dart';
 import '../../../rout_helper/rout_helper.dart';
@@ -126,7 +127,7 @@ class _RateManagementState extends State<RateManagement> {
                                       color: MyColors.secondry,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text(list.rideSharePrice,
+                                Text(currency+" "+list.rideSharePrice,
                                     style: TextStyle(
                                         fontSize: 12,
                                         color: MyColors.secondry,
@@ -151,7 +152,7 @@ class _RateManagementState extends State<RateManagement> {
                                       color: MyColors.secondry,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text(list.privateRidePrice,
+                                Text(currency+" "+list.privateRidePrice,
                                     style: TextStyle(
                                         fontSize: 12,
                                         color: MyColors.secondry,

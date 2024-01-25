@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mie_ride/controller/booking_controller.dart';
 import 'package:get/get.dart';
+import 'package:mie_ride/network/urls.dart';
 import 'package:mie_ride/utils/SnackBar.dart';
 import 'package:mie_ride/utils/text_field.dart';
 import '../../../utils/colors.dart';
@@ -13,10 +14,10 @@ class PlaceOrder extends StatefulWidget {
 }
 
 class _PlaceOrderState extends State<PlaceOrder> {
-  
+
   BookingController controller = Get.put(BookingController());
   var agencyvalue = null;
-  
+
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -25,15 +26,15 @@ class _PlaceOrderState extends State<PlaceOrder> {
     });
     super.initState();
   }
-  
+
   @override
   Widget build(BuildContext context) {
-    return Obx((){
-      if(controller.isLoading.value){
+    return Obx(() {
+      if (controller.isLoading.value) {
         return Center(child: myIndicator(),);
-      }else if(controller.bookingList.length == 0){
+      } else if (controller.bookingList.length == 0) {
         return Center(child: Text("No Order Placed"),);
-      }else{
+      } else {
         return ListView.builder(
           itemCount: controller.bookingList.length,
           physics: BouncingScrollPhysics(),
@@ -64,7 +65,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                                   color: MyColors.secondry,
                                   fontWeight: FontWeight.bold),
                             ),
-                            Text("#"+list.bookingId,
+                            Text("#" + list.bookingId,
                                 style: TextStyle(
                                     fontSize: 12,
                                     color: MyColors.secondry,
@@ -164,7 +165,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                                   color: MyColors.secondry,
                                   fontWeight: FontWeight.bold),
                             ),
-                            Text(list.totalAmount,
+                            Text(currency+" "+list.totalAmount,
                                 style: TextStyle(
                                     fontSize: 12,
                                     color: MyColors.secondry,
@@ -226,32 +227,32 @@ class _PlaceOrderState extends State<PlaceOrder> {
                     SizedBox(
                       height: 10,
                     ),
-                   Card(
-                     color: Colors.greenAccent,
-                     child: Padding(
-                       padding: const EdgeInsets.symmetric(horizontal: 10),
-                       child: Row(
-                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                         children: [
-                           Text(
-                             "Destination",
-                             style: TextStyle(
-                                 fontSize: 12,
-                                 color: MyColors.secondry,
-                                 fontWeight: FontWeight.bold),
-                           ),
-                           SizedBox(
-                             width: Get.width/2,
-                             child: Text( list.destination,
-                                 style: TextStyle(
-                                     fontSize: 12,
-                                     color: MyColors.secondry,
-                                     fontWeight: FontWeight.bold)),
-                           ),
-                         ],
-                       ),
-                     ),
-                   ),
+                    Card(
+                      color: Colors.greenAccent,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Destination",
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  color: MyColors.secondry,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              width: Get.width / 2,
+                              child: Text(list.destination,
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      color: MyColors.secondry,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                     SizedBox(
                       height: 10,
                     ),
@@ -270,8 +271,8 @@ class _PlaceOrderState extends State<PlaceOrder> {
                                   fontWeight: FontWeight.bold),
                             ),
                             SizedBox(
-                              width: Get.width/2,
-                              child: Text( list.source,
+                              width: Get.width / 2,
+                              child: Text(list.source,
                                   style: TextStyle(
                                       fontSize: 12,
                                       color: MyColors.secondry,
@@ -290,7 +291,8 @@ class _PlaceOrderState extends State<PlaceOrder> {
                             border: Border.all(color: Colors.black54),
                             color: Colors.white),
                         child: Obx(
-                              () => controller.agencyLoading.value
+                              () =>
+                          controller.agencyLoading.value
                               ? Center(
                             child: myIndicator(),
                           )
@@ -328,7 +330,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                               onChanged: (value) {
                                 setState(
                                       () {
-                                        agencyvalue = value;
+                                    agencyvalue = value;
                                     print("companyValue===>$agencyvalue");
                                   },
                                 );
@@ -337,68 +339,85 @@ class _PlaceOrderState extends State<PlaceOrder> {
                           ),
                         )),
 
-                  SizedBox(height: 20,),
+                    SizedBox(height: 20,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         SizedBox(
                           height: 40,
-                          width: Get.width/3,
+                          width: Get.width / 3,
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: controller.confirmLoading.value?
-                                Center(child: myIndicator(),):
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: MyColors.gradiant,
-                                foregroundColor: MyColors.white,
-                                minimumSize: Size(80, 30),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                              ),
-                              onPressed: () {
-                                if(agencyvalue == null){
-                                  showCustomSnackBar("please select agency name", context);
-                                }else{
-                                  controller.confirmBooking(list.bookingId,agencyvalue.toString(), () {
-                                    controller.currentIndex.value = 1;
-                                  });
-                                }
+                            child: Obx(() {
+                              if (controller.confirmLoading.value) {
+                                return Center(child: myIndicator(),);
+                              } else {
+                                return ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: MyColors.gradiant,
+                                    foregroundColor: MyColors.white,
+                                    minimumSize: Size(80, 30),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(
+                                            10)),
+                                  ),
+                                  onPressed: () {
+                                    if (agencyvalue == null) {
+                                      showCustomSnackBar(
+                                          "please select agency name", context);
+                                    } else {
+                                      controller.confirmBooking(list.bookingId,
+                                          agencyvalue.toString(), () {
+                                            controller.currentIndex.value = 1;
+                                            setState(() {
 
-
-                              },
-                              child: Text(
-                                "Accept",
-                                style: TextStyle(fontSize: 8),
-                              ),
-                            ),
+                                            });
+                                          });
+                                    }
+                                  },
+                                  child: Text(
+                                    "Accept",
+                                    style: TextStyle(fontSize: 8),
+                                  ),
+                                );
+                              }
+                            }),
                           ),
                         ),
                         SizedBox(
                           height: 40,
-                          width: Get.width/3,
+                          width: Get.width / 3,
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: controller.cancelLoading.value?
-                            Center(child: myIndicator(),):
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.redAccent,
-                                foregroundColor: MyColors.white,
-                                minimumSize: Size(80, 30),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                              ),
-                              onPressed: () {
-                                controller.cancelBooking(list.bookingId, () {
-                                  controller.currentIndex.value = 4;
-                                });
-                              },
-                              child: Text(
-                                "Reject",
-                                style: TextStyle(fontSize: 8),
-                              ),
-                            ),
+                            child: Obx(() {
+                              if (controller.cancelLoading.value) {
+                                return Center(child: myIndicator(),);
+                              } else {
+                                return ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.redAccent,
+                                    foregroundColor: MyColors.white,
+                                    minimumSize: Size(80, 30),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(
+                                            10)),
+                                  ),
+                                  onPressed: () {
+                                    controller.cancelBooking(
+                                        list.bookingId, () {
+                                      controller.currentIndex.value = 4;
+                                      setState(() {
+
+                                      });
+                                    });
+                                  },
+                                  child: Text(
+                                    "Reject",
+                                    style: TextStyle(fontSize: 8),
+                                  ),
+                                );
+                              }
+                            }),
                           ),
                         ),
                       ],

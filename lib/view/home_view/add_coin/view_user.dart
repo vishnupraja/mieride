@@ -4,6 +4,8 @@ import 'package:mie_ride/controller/coin_controller.dart';
 import 'package:mie_ride/utils/colors.dart';
 import 'package:mie_ride/utils/text_field.dart';
 
+import '../../../network/urls.dart';
+
 class ViewUser extends StatefulWidget {
   const ViewUser({Key? key}) : super(key: key);
 
@@ -127,7 +129,7 @@ class _ViewUserState extends State<ViewUser> {
                                       color: MyColors.secondry,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text(list.walletBalance,
+                                Text(currency +" "+list.walletBalance,
                                     style: TextStyle(
                                         fontSize: 12,
                                         color: MyColors.secondry,
@@ -173,8 +175,8 @@ class _ViewUserState extends State<ViewUser> {
                 Image.asset('assets/images/coinPopImage.png'),
                 Row(
                   children: [
-                    const Text('Total Credit:- '),
-                    Text('USD.$price}'),
+                    const Text('Total Credit:- ',style: TextStyle(fontSize: 20),),
+                    Flexible(child: Text('CAD $price',style: TextStyle(fontSize: 20),)),
                   ],
                 ),
                 SizedBox(
